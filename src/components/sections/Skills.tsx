@@ -25,7 +25,7 @@ export function Skills() {
           subtitle="Organized by how I apply them — not by arbitrary proficiency scores."
         />
 
-        <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
+        <div className="grid items-start gap-6 lg:grid-cols-[200px_1fr] lg:gap-8">
         <div className="flex flex-row gap-2 overflow-x-auto lg:flex-col" role="tablist" aria-label="Skill categories">
           {skillGroups.map((group) => (
             <button
@@ -36,7 +36,7 @@ export function Skills() {
               aria-controls={`panel-${group.id}`}
               onClick={() => setActive(group.id)}
               className={cn(
-                'shrink-0 rounded-lg border px-4 py-3 text-left text-sm transition-colors min-h-[44px]',
+                'shrink-0 rounded-lg border px-3 py-2.5 text-left text-sm transition-colors min-h-[44px]',
                 active === group.id
                   ? 'border-accent/30 bg-accent-muted text-accent'
                   : 'border-border text-text-secondary hover:border-border-strong hover:text-text-primary',
@@ -54,7 +54,7 @@ export function Skills() {
           id={`panel-${activeGroup.id}`}
           role="tabpanel"
           aria-label={activeGroup.label}
-          className="surface-elevated min-h-[200px] p-6 md:p-8"
+          className="surface-elevated self-start p-4 md:p-5"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -64,7 +64,7 @@ export function Skills() {
               exit={reduced ? undefined : { opacity: 0, y: -12 }}
               transition={{ duration: reduced ? 0.01 : 0.3 }}
             >
-              <h3 className="text-mono mb-6 text-accent">{activeGroup.label}</h3>
+              <h3 className="text-mono mb-4 text-accent">{activeGroup.label}</h3>
               <div
                 className={cn(
                   'flex flex-wrap gap-2',

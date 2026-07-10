@@ -36,8 +36,7 @@ export function About() {
               <span className="text-accent">Mark</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary md:text-xl">
-              I grew up in Accra, Ghana, and now study computer science at Williams College.
-              I build software that stays clear, reliable, and useful when real people depend on it.
+              I love to build software.
             </p>
           </motion.div>
         </div>
