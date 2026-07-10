@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { skillGroups } from '@/data/skills'
 import { SkillIcon } from '@/components/ui/SkillIcon'
+import { FoundationIcon, isFoundationSkill } from '@/lib/foundationIcons'
+import { WhirlBackground } from '@/components/ui/WhirlBackground'
 import { AnimatedHeading } from '@/components/motion/AnimatedHeading'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -14,13 +16,16 @@ export function Skills() {
 
   return (
     <SectionWrapper ariaLabel="Skills and toolkit">
-      <AnimatedHeading
-        eyebrow="Toolkit"
-        title="How I build"
-        subtitle="Organized by how I apply them — not by arbitrary proficiency scores."
-      />
+      <div className="relative">
+        <WhirlBackground variant="section" />
 
-      <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
+        <AnimatedHeading
+          eyebrow="Toolkit"
+          title="How I build"
+          subtitle="Organized by how I apply them — not by arbitrary proficiency scores."
+        />
+
+        <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
         <div className="flex flex-row gap-2 overflow-x-auto lg:flex-col" role="tablist" aria-label="Skill categories">
           {skillGroups.map((group) => (
             <button
@@ -60,22 +65,37 @@ export function Skills() {
               transition={{ duration: reduced ? 0.01 : 0.3 }}
             >
               <h3 className="text-mono mb-6 text-accent">{activeGroup.label}</h3>
-              <div className="flex flex-wrap gap-2">
+              <div
+                className={cn(
+                  'flex flex-wrap gap-2',
+                  activeGroup.id === 'foundations' && 'gap-3',
+                )}
+              >
                 {activeGroup.items.map((skill, i) => (
                   <motion.span
                     key={skill}
-                    className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-4 py-2 text-sm text-text-primary"
+                    className={cn(
+                      'inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface text-sm text-text-primary',
+                      activeGroup.id === 'foundations' ? 'px-4 py-2.5' : 'px-4 py-2',
+                    )}
                     initial={reduced ? false : { opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: reduced ? 0 : i * 0.03 }}
                   >
-                    <SkillIcon name={skill} size={16} />
+                    {isFoundationSkill(skill) ? (
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full border border-accent/20 bg-accent-muted">
+                        <FoundationIcon name={skill} size={18} />
+                      </span>
+                    ) : (
+                      <SkillIcon name={skill} size={16} />
+                    )}
                     {skill}
                   </motion.span>
                 ))}
               </div>
             </motion.div>
           </AnimatePresence>
+        </div>
         </div>
       </div>
     </SectionWrapper>

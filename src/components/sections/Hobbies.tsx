@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { hobbies } from '@/data/hobbies'
+import { WhirlBackground } from '@/components/ui/WhirlBackground'
 import { AnimatedHeading } from '@/components/motion/AnimatedHeading'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -32,7 +33,10 @@ export function Hobbies() {
 
   return (
     <SectionWrapper id="hobbies" ariaLabel="Hobbies and interests">
-      <AnimatedHeading
+      <div className="relative">
+        <WhirlBackground variant="section" />
+
+        <AnimatedHeading
         eyebrow="Beyond code"
         title="Hobbies & interests"
         subtitle="The things that keep me curious outside of engineering."
@@ -87,6 +91,7 @@ export function Hobbies() {
           </motion.div>
         )}
       </motion.div>
+      </div>
     </SectionWrapper>
   )
 }

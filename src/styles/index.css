@@ -2,19 +2,41 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-bg-primary: #1a2332;
-  --color-bg-surface: #243044;
-  --color-bg-elevated: #2d3a50;
-  --color-text-primary: #f0f4f8;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #64748b;
-  --color-accent: #4f9cf9;
-  --color-accent-muted: rgba(79, 156, 249, 0.14);
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-bg-primary: #0c0b10;
+  --color-bg-surface: #15131c;
+  --color-bg-elevated: #1e1b28;
+  --color-text-primary: #f4f1f8;
+  --color-text-secondary: #a8a3b8;
+  --color-text-muted: #6b6578;
+  --color-accent: #a855f7;
+  --color-accent-muted: rgba(168, 85, 247, 0.14);
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
   --font-display: 'Syne', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --animate-whirl-drift: whirl-drift 20s ease-in-out infinite;
+  --animate-whirl-drift-reverse: whirl-drift-reverse 24s ease-in-out infinite;
+}
+
+@keyframes whirl-drift {
+  0%,
+  100% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-48%) rotate(3deg);
+  }
+}
+
+@keyframes whirl-drift-reverse {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-4deg) translateX(6px);
+  }
 }
 
 *,
@@ -45,7 +67,7 @@ body {
 }
 
 ::selection {
-  background: rgba(79, 156, 249, 0.28);
+  background: rgba(168, 85, 247, 0.28);
   color: var(--color-text-primary);
 }
 

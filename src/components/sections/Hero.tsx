@@ -5,6 +5,7 @@ import { ArrowDown } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
 import { socialLinks } from '@/data/socialLinks'
 import { HeroVisual } from '@/components/three/HeroVisual'
+import { WhirlBackground } from '@/components/ui/WhirlBackground'
 import { Button } from '@/components/ui/Button'
 import { AvailabilityBadge } from '@/components/ui/AvailabilityBadge'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -40,6 +41,7 @@ export function Hero() {
       aria-label="Introduction"
     >
       <div className="pointer-events-none absolute inset-0 z-0">
+        <WhirlBackground variant="hero" />
         <HeroVisual
           mouseX={mouse.x}
           mouseY={mouse.y}
@@ -63,7 +65,8 @@ export function Hero() {
             className="text-display text-[clamp(2.5rem,6.5vw,4.5rem)] font-bold leading-[1.05] text-text-primary"
             variants={itemVariants}
           >
-            I build systems that keep people and information connected.
+            I build systems that keep people and{' '}
+            <span className="text-accent">information connected.</span>
           </motion.h1>
 
           <motion.p

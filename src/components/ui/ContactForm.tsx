@@ -3,29 +3,54 @@ import { Send, CheckCircle, AlertCircle } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
 
-type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error' | 'unconfigured'
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>('idle')
   const formUrl = import.meta.env.VITE_CONTACT_FORM_URL
+  const web3Key = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!formUrl) {
-      setStatus('error')
+    const form = e.currentTarget
+    const formData = new FormData(form)
+    const name = formData.get('name') as string
+    const email = formData.get('email') as string
+    const message = formData.get('message') as string
+
+    if (!formUrl && !web3Key) {
+      setStatus('unconfigured')
       return
     }
 
     setStatus('submitting')
-    const form = e.currentTarget
-    const data = new FormData(form)
 
     try {
-      const res = await fetch(formUrl, {
-        method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
-      })
+      let res: Response
+
+      if (web3Key) {
+        res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            access_key: web3Key,
+            name,
+            email,
+            message,
+            subject: `Portfolio message from ${name}`,
+          }),
+        })
+      } else if (formUrl) {
+        res = await fetch(formUrl, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' },
+        })
+      } else {
+        setStatus('unconfigured')
+        return
+      }
+
       if (res.ok) {
         setStatus('success')
         form.reset()
@@ -35,14 +60,6 @@ export function ContactForm() {
     } catch {
       setStatus('error')
     }
-  }
-
-  if (!formUrl) {
-    return (
-      <div className="rounded-xl border border-border bg-bg-surface p-6 text-center text-sm text-text-secondary">
-        <p>Contact form is being configured. Reach out via LinkedIn or GitHub in the meantime.</p>
-      </div>
-    )
   }
 
   return (
@@ -116,7 +133,12 @@ export function ContactForm() {
       {status === 'error' && (
         <p className="flex items-center gap-2 text-sm text-red-400" role="alert">
           <AlertCircle size={16} aria-hidden />
-          Something went wrong. Try again or reach out on LinkedIn.
+          Something went wrong. Please try again or reach out on LinkedIn.
+        </p>
+      )}
+      {status === 'unconfigured' && (
+        <p className="text-sm text-text-muted" role="alert">
+          Form delivery isn&apos;t configured yet. Use LinkedIn or GitHub below for now.
         </p>
       )}
     </form>

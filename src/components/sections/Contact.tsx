@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
 import { socialLinks } from '@/data/socialLinks'
 import { ContactForm } from '@/components/ui/ContactForm'
+import { WhirlBackground } from '@/components/ui/WhirlBackground'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { fadeUp, staggerContainer } from '@/lib/motion'
@@ -14,7 +15,10 @@ export function Contact() {
 
   return (
     <SectionWrapper ariaLabel="Contact">
-      <motion.div
+      <div className="relative">
+        <WhirlBackground variant="section" />
+
+        <motion.div
         className="mx-auto max-w-2xl text-center"
         initial={reduced ? false : 'hidden'}
         whileInView="visible"
@@ -72,7 +76,8 @@ export function Contact() {
             Back to home
           </Link>
         </motion.div>
-      </motion.div>
+        </motion.div>
+      </div>
     </SectionWrapper>
   )
 }

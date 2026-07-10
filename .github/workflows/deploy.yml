@@ -33,7 +33,7 @@ jobs:
         run: npm run build
         env:
           VITE_BASE_PATH: /
-          VITE_CONTACT_FORM_URL: ${{ secrets.VITE_CONTACT_FORM_URL }}
+          VITE_CONTACT_FORM_URL: https://formspree.io/f/mkoldbbo
 
       - uses: actions/upload-pages-artifact@v3
         with:
