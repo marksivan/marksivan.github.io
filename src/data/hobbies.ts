@@ -33,11 +33,4 @@ export const hobbies: Hobby[] = [
       },
     ],
   },
-  {
-    id: 'basketball',
-    name: 'Basketball',
-    description:
-      'Playing and following basketball — on the court and as a way to unwind from long coding sessions.',
-    photos: [],
-  },
 ]

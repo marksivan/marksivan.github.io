@@ -8,6 +8,7 @@ import { HomePage } from '@/pages/HomePage'
 import { WorkPage } from '@/pages/WorkPage'
 import { ExperiencePage } from '@/pages/ExperiencePage'
 import { AboutPage } from '@/pages/AboutPage'
+import { InterestsPage } from '@/pages/InterestsPage'
 import { EducationPage } from '@/pages/EducationPage'
 import { SkillsPage } from '@/pages/SkillsPage'
 import { ContactPage } from '@/pages/ContactPage'
@@ -65,6 +66,7 @@ function App() {
         <Route path="/work" element={<WorkPage />} />
         <Route path="/experience" element={<ExperiencePage />} />
         <Route path="/about" element={<AboutPage />} />
+        <Route path="/interests" element={<InterestsPage />} />
         <Route path="/education" element={<EducationPage />} />
         <Route path="/skills" element={<SkillsPage />} />
         <Route path="/contact" element={<ContactPage />} />

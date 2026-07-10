@@ -42,7 +42,7 @@ export function Hobbies() {
         subtitle="The things that keep me curious outside of engineering."
       />
 
-      <div className="mb-8 flex flex-wrap gap-2">
+      <div className={hobbies.length > 1 ? 'mb-8 flex flex-wrap gap-2' : 'hidden'}>
         {hobbies.map((h) => (
           <button
             key={h.id}

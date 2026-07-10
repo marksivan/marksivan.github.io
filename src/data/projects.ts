@@ -91,6 +91,7 @@ export const projects: Project[] = [
       { type: 'live', label: 'Live demo', href: 'https://marksivan.github.io/smart-clerk/' },
     ],
     visual: 'smart-clerk',
+    screenshot: '/images/projects/smart-clerk.jpg',
     layout: 'right',
     caseStudy: {
       overview:
@@ -127,6 +128,7 @@ export const projects: Project[] = [
       { type: 'live', label: 'Live demo', href: 'https://flixster-starter-ck7v.onrender.com/' },
     ],
     visual: 'flixster',
+    screenshot: '/images/projects/flixster.jpg',
     layout: 'right',
     caseStudy: {
       overview:
