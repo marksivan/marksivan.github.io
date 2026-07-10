@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { experience } from '@/data/experience'
+import { brandIcons } from '@/lib/skillIcons'
+import { BrandLogo } from '@/components/ui/SkillIcon'
 import { AnimatedHeading } from '@/components/motion/AnimatedHeading'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -10,7 +12,7 @@ export function Experience() {
   const reduced = useReducedMotion()
 
   return (
-    <SectionWrapper id="experience" ariaLabel="Experience and education">
+    <SectionWrapper ariaLabel="Experience and education">
       <AnimatedHeading
         eyebrow="Experience"
         title="A path through systems and support"
@@ -18,7 +20,6 @@ export function Experience() {
       />
 
       <div className="relative">
-        {/* Timeline line */}
         <div
           className="absolute top-0 bottom-0 left-[7px] w-px bg-border md:left-1/2 md:-translate-x-px"
           aria-hidden
@@ -40,7 +41,6 @@ export function Experience() {
               )}
               variants={fadeUp}
             >
-              {/* Node */}
               <div
                 className="absolute left-0 top-1 h-[15px] w-[15px] rounded-full border-2 border-accent bg-bg-primary md:left-1/2 md:-translate-x-1/2"
                 aria-hidden
@@ -50,7 +50,19 @@ export function Experience() {
                 <p className="text-mono text-[0.65rem] text-accent">
                   {item.type === 'education' ? 'Education' : 'Work'}
                 </p>
-                <h3 className="mt-1 font-display text-xl font-semibold text-text-primary">
+                {item.brands && item.brands.length > 0 && (
+                  <div
+                    className={cn(
+                      'mt-3 flex gap-2',
+                      i % 2 === 0 ? 'md:justify-end' : 'md:justify-start',
+                    )}
+                  >
+                    {item.brands.map((b) => (
+                      <BrandLogo key={b} brand={brandIcons[b]} size={22} />
+                    ))}
+                  </div>
+                )}
+                <h3 className="mt-2 font-display text-xl font-semibold text-text-primary">
                   {item.organization}
                 </h3>
                 <p className="mt-1 text-sm text-text-secondary">{item.role}</p>

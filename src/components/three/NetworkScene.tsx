@@ -76,7 +76,7 @@ function NetworkNodes({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mouseY?: nu
         return (
           <line key={`edge-${i}`}>
             <bufferGeometry attach="geometry" {...geometry} />
-            <lineBasicMaterial attach="material" color="#2ec4a0" transparent opacity={0.12} />
+            <lineBasicMaterial attach="material" color="#4f9cf9" transparent opacity={0.12} />
           </line>
         )
       })}
@@ -84,8 +84,8 @@ function NetworkNodes({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mouseY?: nu
         <mesh key={`node-${i}`} position={pos}>
           <sphereGeometry args={[i === nodes.length - 1 ? 0.08 : 0.04, 16, 16]} />
           <meshStandardMaterial
-            color={i === nodes.length - 1 ? '#2ec4a0' : '#4a5568'}
-            emissive={i === nodes.length - 1 ? '#2ec4a0' : '#1a2028'}
+            color={i === nodes.length - 1 ? '#4f9cf9' : '#4a5568'}
+            emissive={i === nodes.length - 1 ? '#4f9cf9' : '#1a2028'}
             emissiveIntensity={i === nodes.length - 1 ? 0.4 : 0.1}
           />
         </mesh>
@@ -98,7 +98,7 @@ function NetworkNodes({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mouseY?: nu
           }}
         >
           <sphereGeometry args={[0.02, 8, 8]} />
-          <meshStandardMaterial color="#2ec4a0" emissive="#2ec4a0" emissiveIntensity={1} />
+          <meshStandardMaterial color="#4f9cf9" emissive="#4f9cf9" emissiveIntensity={1} />
         </mesh>
       ))}
     </group>
@@ -121,7 +121,7 @@ function SceneContent({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
   return (
     <>
       <ambientLight intensity={0.3} />
-      <pointLight position={[5, 5, 5]} intensity={0.5} color="#2ec4a0" />
+      <pointLight position={[5, 5, 5]} intensity={0.5} color="#4f9cf9" />
       <NetworkNodes mouseX={mouseX} mouseY={mouseY} />
     </>
   )

@@ -2,16 +2,16 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-bg-primary: #090a0c;
-  --color-bg-surface: #111318;
-  --color-bg-elevated: #181b22;
-  --color-text-primary: #f4f1ea;
-  --color-text-secondary: #8a93a5;
-  --color-text-muted: #5c6474;
-  --color-accent: #2ec4a0;
-  --color-accent-muted: rgba(46, 196, 160, 0.15);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(255, 255, 255, 0.14);
+  --color-bg-primary: #1a2332;
+  --color-bg-surface: #243044;
+  --color-bg-elevated: #2d3a50;
+  --color-text-primary: #f0f4f8;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-accent: #4f9cf9;
+  --color-accent-muted: rgba(79, 156, 249, 0.14);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
   --font-display: 'Syne', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -45,7 +45,7 @@ body {
 }
 
 ::selection {
-  background: rgba(46, 196, 160, 0.25);
+  background: rgba(79, 156, 249, 0.28);
   color: var(--color-text-primary);
 }
 
@@ -83,7 +83,7 @@ body {
 }
 
 .section-padding {
-  padding-block: clamp(5rem, 12vw, 8rem);
+  padding-block: clamp(4rem, 10vw, 6rem);
 }
 
 .text-display {
@@ -115,7 +115,6 @@ body {
   mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }

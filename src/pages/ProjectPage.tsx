@@ -2,18 +2,19 @@ import { Link, useParams, Navigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { GithubIcon } from '@/components/ui/SocialIcons'
 import { getProjectBySlug, getAdjacentProjects } from '@/data/projects'
+import { brandIcons } from '@/lib/skillIcons'
+import { BrandLogo } from '@/components/ui/SkillIcon'
 import { ProjectVisual } from '@/components/projects/ProjectVisual'
 import { Tag } from '@/components/ui/Tag'
 import { Footer } from '@/components/layout/Footer'
-import { getBasePath } from '@/lib/utils'
+import { personal } from '@/data/personal'
 
 export function ProjectPage() {
   const { slug } = useParams<{ slug: string }>()
   const project = slug ? getProjectBySlug(slug) : undefined
-  const base = getBasePath()
 
   if (!project) {
-    return <Navigate to={`${base}/`} replace />
+    return <Navigate to="/" replace />
   }
 
   const { prev, next } = getAdjacentProjects(project.slug)
@@ -30,21 +31,31 @@ export function ProjectPage() {
 
   return (
     <div className="min-h-screen bg-bg-primary">
-      <header className="border-b border-border">
+      <header className="border-b border-border bg-bg-primary/90 backdrop-blur-md">
         <div className="container flex h-16 items-center justify-between">
           <Link
-            to={`${base}/`}
+            to="/work"
             className="inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-accent"
           >
             <ArrowLeft size={16} />
-            Back to portfolio
+            Back to work
           </Link>
-          <span className="font-display text-sm font-bold text-text-primary">MST</span>
+          <Link
+            to="/"
+            className="font-display text-base font-bold text-text-primary transition-colors hover:text-accent"
+          >
+            {personal.displayName}
+          </Link>
         </div>
       </header>
 
-      <main className="container section-padding">
-        <p className="text-mono text-accent">{project.category}</p>
+      <main id="main-content" className="container section-padding">
+        <div className="flex flex-wrap items-center gap-3">
+          <p className="text-mono text-accent">{project.category}</p>
+          {project.brands?.map((b) => (
+            <BrandLogo key={b} brand={brandIcons[b]} size={22} className="p-1.5" />
+          ))}
+        </div>
         <h1 className="text-display mt-3 text-[clamp(1.75rem,4vw,3rem)] font-bold leading-tight text-text-primary">
           {project.title}
         </h1>
@@ -98,7 +109,7 @@ export function ProjectPage() {
         >
           {prev ? (
             <Link
-              to={`${base}/project/${prev.slug}`}
+              to={`/project/${prev.slug}`}
               className="group flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-accent"
             >
               <ArrowLeft size={16} />
@@ -112,7 +123,7 @@ export function ProjectPage() {
           )}
           {next ? (
             <Link
-              to={`${base}/project/${next.slug}`}
+              to={`/project/${next.slug}`}
               className="group flex items-center gap-2 text-right text-sm text-text-secondary transition-colors hover:text-accent"
             >
               <span>

@@ -1,10 +1,8 @@
 export const personal = {
   name: 'Mark Sivan Tamakloe',
-  initials: 'MST',
+  displayName: 'Mark Tamakloe',
   title: 'Software Engineer & Computer Science Student',
   tagline: 'Building systems that move information clearly.',
-  email: 'mst3@williams.edu',
-  resumePath: '/resume.pdf',
   location: {
     origin: 'Accra, Ghana',
     current: 'Massachusetts, USA',

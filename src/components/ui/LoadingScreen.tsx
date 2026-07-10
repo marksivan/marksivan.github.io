@@ -32,7 +32,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             cx="12"
             cy="24"
             r="4"
-            fill="#2ec4a0"
+            fill="#4f9cf9"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: reduced ? 0 : 0.1, duration: reduced ? 0.01 : 0.3 }}
@@ -41,7 +41,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             cx="40"
             cy="24"
             r="4"
-            fill="#2ec4a0"
+            fill="#4f9cf9"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: reduced ? 0 : 0.25, duration: reduced ? 0.01 : 0.3 }}
@@ -50,7 +50,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             cx="68"
             cy="24"
             r="4"
-            fill="#2ec4a0"
+            fill="#4f9cf9"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: reduced ? 0 : 0.4, duration: reduced ? 0.01 : 0.3 }}
@@ -60,7 +60,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             y1="24"
             x2="36"
             y2="24"
-            stroke="#2ec4a0"
+            stroke="#4f9cf9"
             strokeWidth="1"
             strokeOpacity="0.5"
             initial={{ pathLength: 0 }}
@@ -72,7 +72,7 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
             y1="24"
             x2="64"
             y2="24"
-            stroke="#2ec4a0"
+            stroke="#4f9cf9"
             strokeWidth="1"
             strokeOpacity="0.5"
             initial={{ pathLength: 0 }}

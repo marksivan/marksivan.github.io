@@ -8,6 +8,7 @@ export const experience: ExperienceItem[] = [
     location: 'Menlo Park, California',
     period: 'Summer 2025',
     type: 'work',
+    brands: ['meta', 'whatsapp'],
     highlights: [
       'Built real-time synchronization for PIX keys across Android companion devices.',
       'Worked with Kotlin, Java, XMPP, and SyncD.',

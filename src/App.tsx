@@ -3,7 +3,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { Navigation } from '@/components/navigation/Navigation'
 import { LoadingScreen } from '@/components/ui/LoadingScreen'
+import { ScrollToTop } from '@/components/layout/ScrollToTop'
 import { HomePage } from '@/pages/HomePage'
+import { WorkPage } from '@/pages/WorkPage'
+import { ExperiencePage } from '@/pages/ExperiencePage'
+import { AboutPage } from '@/pages/AboutPage'
+import { SkillsPage } from '@/pages/SkillsPage'
+import { ContactPage } from '@/pages/ContactPage'
 import { ProjectPage } from '@/pages/ProjectPage'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
@@ -13,10 +19,10 @@ function App() {
   const reduced = useReducedMotion()
 
   useEffect(() => {
-    // GitHub Pages SPA redirect handler
     const redirect = new URLSearchParams(window.location.search).get('p')
     if (redirect) {
-      window.history.replaceState(null, '', redirect)
+      const path = redirect.split('#')[0]
+      window.history.replaceState(null, '', path)
     }
   }, [])
 
@@ -42,6 +48,7 @@ function App() {
 
   return (
     <BrowserRouter basename={base === '/' ? undefined : base.replace(/\/$/, '')}>
+      <ScrollToTop />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
@@ -54,6 +61,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/work" element={<WorkPage />} />
+        <Route path="/experience" element={<ExperiencePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/skills" element={<SkillsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/project/:slug" element={<ProjectPage />} />
       </Routes>
     </BrowserRouter>

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { skillGroups } from '@/data/skills'
+import { SkillIcon } from '@/components/ui/SkillIcon'
 import { AnimatedHeading } from '@/components/motion/AnimatedHeading'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -12,7 +13,7 @@ export function Skills() {
   const activeGroup = skillGroups.find((g) => g.id === active) ?? skillGroups[0]
 
   return (
-    <SectionWrapper id="skills" ariaLabel="Skills and toolkit">
+    <SectionWrapper ariaLabel="Skills and toolkit">
       <AnimatedHeading
         eyebrow="Toolkit"
         title="How I build"
@@ -20,7 +21,6 @@ export function Skills() {
       />
 
       <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
-        {/* Filter tabs */}
         <div className="flex flex-row gap-2 overflow-x-auto lg:flex-col" role="tablist" aria-label="Skill categories">
           {skillGroups.map((group) => (
             <button
@@ -45,7 +45,6 @@ export function Skills() {
           ))}
         </div>
 
-        {/* Skills panel */}
         <div
           id={`panel-${activeGroup.id}`}
           role="tabpanel"
@@ -65,11 +64,12 @@ export function Skills() {
                 {activeGroup.items.map((skill, i) => (
                   <motion.span
                     key={skill}
-                    className="rounded-full border border-border px-4 py-2 text-sm text-text-primary"
+                    className="inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface px-4 py-2 text-sm text-text-primary"
                     initial={reduced ? false : { opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: reduced ? 0 : i * 0.03 }}
                   >
+                    <SkillIcon name={skill} size={16} />
                     {skill}
                   </motion.span>
                 ))}

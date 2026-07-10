@@ -4,35 +4,34 @@ export const projects: Project[] = [
   {
     id: 'pix-sync',
     slug: 'whatsapp-pix-sync',
-    category: 'Software Engineering Internship · Payments',
-    title: 'Keeping PIX payment identities consistent across linked WhatsApp devices',
+    category: 'Internship · WhatsApp Payments',
+    title: 'Keeping PIX keys in sync across linked phones',
     description:
-      'Built real-time synchronization for PIX payment keys across Android companion devices using Kotlin, Java, XMPP, and SyncD, enabling users to access consistent payment information across linked devices in WhatsApp\'s Brazil market.',
+      'On the WhatsApp Payments team, I helped build the sync layer that keeps PIX payment keys consistent when someone links a second Android device — so the same payment identity shows up everywhere it should.',
     highlights: [
-      'Distributed synchronization',
-      'Android companion-device architecture',
-      'State consistency',
-      'Payment infrastructure',
-      'Cross-functional engineering',
-      'Large-scale product environment',
+      'Real-time sync across companion devices',
+      'Kotlin & Java on Android',
+      'XMPP + SyncD under the hood',
+      'Payments in production at scale',
     ],
     technologies: ['Kotlin', 'Java', 'XMPP', 'SyncD', 'Android'],
-    links: [{ type: 'professional', label: 'Professional Experience' }],
+    links: [{ type: 'professional', label: 'Professional experience' }],
     visual: 'pix-sync',
     layout: 'right',
+    brands: ['whatsapp', 'meta'],
     caseStudy: {
       overview:
-        'During my internship on WhatsApp Payments, I contributed to real-time synchronization of PIX payment keys across Android companion devices — ensuring users see consistent payment identities regardless of which linked device they use.',
+        'During my internship on WhatsApp Payments, I worked on keeping PIX payment keys in sync across linked Android devices — the kind of problem where a small mismatch between phones can break trust in a payment flow.',
       problem:
-        'When users link multiple Android devices to WhatsApp, payment identities must remain consistent. Any drift between devices creates confusion and erodes trust in payment flows.',
+        'When people link multiple Android devices to WhatsApp, their PIX payment identity needs to stay the same on each one. If devices drift out of sync, users see inconsistent information and the experience falls apart.',
       role:
-        'Software Engineering Intern on the WhatsApp Payments team, working alongside senior engineers on synchronization infrastructure.',
+        'Software Engineering Intern on the WhatsApp Payments team, working with senior engineers on synchronization infrastructure.',
       approach:
-        'Implemented synchronization logic using Kotlin and Java within WhatsApp\'s companion-device architecture, leveraging XMPP messaging and SyncD for state propagation across linked devices.',
+        'Built sync logic in Kotlin and Java within WhatsApp\'s companion-device setup, using XMPP messaging and SyncD to propagate state between linked devices.',
       challenges:
-        'Maintaining state consistency across devices with varying connectivity, while operating within a large-scale production environment with rigorous design review processes.',
+        'Handling devices with different connectivity patterns while working inside a large production codebase with thorough design reviews.',
       outcome:
-        'Contributed to reliable PIX key synchronization that supports consistent payment experiences across linked devices in WhatsApp\'s Brazil market.',
+        'Contributed to reliable PIX key synchronization for linked devices in WhatsApp\'s Brazil market.',
     },
   },
   {

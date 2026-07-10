@@ -2,13 +2,13 @@ export interface SocialLink {
   id: string
   label: string
   href: string
-  icon: 'github' | 'linkedin' | 'email' | 'resume'
+  icon: 'github' | 'linkedin'
 }
 
 export interface NavItem {
   id: string
   label: string
-  href: string
+  path: string
 }
 
 export interface ProjectLink {
@@ -37,6 +37,7 @@ export interface Project {
   links: ProjectLink[]
   visual: 'pix-sync' | 'storystack' | 'smart-clerk' | 'trivia'
   layout: 'left' | 'right'
+  brands?: ('meta' | 'whatsapp')[]
   caseStudy: ProjectCaseStudy
 }
 
@@ -48,6 +49,7 @@ export interface ExperienceItem {
   period?: string
   highlights: string[]
   type: 'work' | 'education'
+  brands?: ('meta' | 'whatsapp')[]
 }
 
 export interface SkillGroup {

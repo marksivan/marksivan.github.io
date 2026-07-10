@@ -25,10 +25,10 @@ export function PixSyncVisual() {
         {/* Animated signals */}
         {!reduced && (
           <>
-            <circle r="3" fill="#2ec4a0">
+            <circle r="3" fill="#4f9cf9">
               <animateMotion dur="2.5s" repeatCount="indefinite" path="M80,135 L170,140 L230,140 L320,135" />
             </circle>
-            <circle r="3" fill="#2ec4a0" opacity="0.5">
+            <circle r="3" fill="#4f9cf9" opacity="0.5">
               <animateMotion dur="2.5s" repeatCount="indefinite" begin="1.2s" path="M320,135 L230,140 L170,140 L80,135" />
             </circle>
           </>

@@ -23,11 +23,11 @@ export function About() {
           <div className="mt-6 rounded-xl border border-border bg-bg-surface p-4" aria-hidden>
             <svg viewBox="0 0 300 60" className="w-full">
               <line x1="30" y1="30" x2="270" y2="30" stroke="rgba(46,196,160,0.2)" strokeWidth="1" strokeDasharray="4 4" />
-              <circle cx="30" cy="30" r="5" fill="#111318" stroke="#2ec4a0" strokeWidth="1" />
-              <circle cx="270" cy="30" r="5" fill="#111318" stroke="#2ec4a0" strokeWidth="1" />
+              <circle cx="30" cy="30" r="5" fill="#111318" stroke="#4f9cf9" strokeWidth="1" />
+              <circle cx="270" cy="30" r="5" fill="#111318" stroke="#4f9cf9" strokeWidth="1" />
               <text x="30" y="52" textAnchor="middle" fill="#5c6474" fontSize="7" fontFamily="monospace">Accra</text>
               <text x="270" y="52" textAnchor="middle" fill="#5c6474" fontSize="7" fontFamily="monospace">Williams</text>
-              <circle r="2" fill="#2ec4a0">
+              <circle r="2" fill="#4f9cf9">
                 <animateMotion dur="4s" repeatCount="indefinite" path="M30,30 L270,30" />
               </circle>
             </svg>

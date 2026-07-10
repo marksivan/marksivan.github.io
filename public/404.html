@@ -5,7 +5,7 @@
     <title>Mark Sivan Tamakloe — Software Engineer</title>
     <script>
       // GitHub Pages SPA redirect for root user site (https://marksivan.github.io/)
-      const path = location.pathname + location.search + location.hash
+      const path = (location.pathname + location.search + location.hash).split('#')[0] + location.search
       if (path !== '/') {
         location.replace('/?p=' + encodeURIComponent(path))
       }

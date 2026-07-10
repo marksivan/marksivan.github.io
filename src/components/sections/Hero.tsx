@@ -1,15 +1,13 @@
 import { useState, useCallback } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowDown, Mail } from 'lucide-react'
+import { ArrowDown } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
-import { personal } from '@/data/personal'
 import { socialLinks } from '@/data/socialLinks'
 import { HeroVisual } from '@/components/three/HeroVisual'
 import { Button } from '@/components/ui/Button'
 import { AvailabilityBadge } from '@/components/ui/AvailabilityBadge'
-import { MagneticButton } from '@/components/motion/MagneticButton'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { assetPath } from '@/lib/utils'
 import { duration, easing, staggerContainer } from '@/lib/motion'
 import type { Variants } from 'framer-motion'
 
@@ -34,23 +32,20 @@ export function Hero() {
 
   const github = socialLinks.find((l) => l.id === 'github')
   const linkedin = socialLinks.find((l) => l.id === 'linkedin')
-  const email = socialLinks.find((l) => l.id === 'email')
 
   return (
     <section
-      id="hero"
       className="relative flex min-h-[100svh] items-center overflow-hidden"
       onMouseMove={handleMouseMove}
       aria-label="Introduction"
     >
-      {/* Background visual */}
       <div className="pointer-events-none absolute inset-0 z-0">
         <HeroVisual
           mouseX={mouse.x}
           mouseY={mouse.y}
-          className="absolute inset-0 h-full w-full opacity-60 gradient-mask-b"
+          className="absolute inset-0 h-full w-full opacity-50 gradient-mask-b"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/20 via-transparent to-bg-primary" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/30 via-transparent to-bg-primary" />
       </div>
 
       <div className="container relative z-10 pt-24 pb-20">
@@ -60,10 +55,7 @@ export function Hero() {
           variants={staggerContainer}
           className="max-w-3xl"
         >
-          <motion.p
-            className="text-mono mb-6 text-accent"
-            variants={itemVariants}
-          >
+          <motion.p className="text-mono mb-6 text-accent" variants={itemVariants}>
             Software engineer · Williams College
           </motion.p>
 
@@ -83,27 +75,18 @@ export function Hero() {
             and intelligent applications.
           </motion.p>
 
-          <motion.div
-            className="mt-8 flex flex-wrap items-center gap-4"
-            variants={itemVariants}
-          >
-            <MagneticButton href="#work">
+          <motion.div className="mt-8 flex flex-wrap items-center gap-4" variants={itemVariants}>
+            <Link to="/work">
               <Button variant="primary" magnetic>
                 Explore my work
               </Button>
-            </MagneticButton>
-            <Button
-              variant="outline"
-              href={assetPath(personal.resumePath)}
-            >
-              View résumé
-            </Button>
+            </Link>
+            <Link to="/contact">
+              <Button variant="outline">Get in touch</Button>
+            </Link>
           </motion.div>
 
-          <motion.div
-            className="mt-6 flex items-center gap-4"
-            variants={itemVariants}
-          >
+          <motion.div className="mt-6 flex items-center gap-4" variants={itemVariants}>
             {github && (
               <a
                 href={github.href}
@@ -126,15 +109,6 @@ export function Hero() {
                 <LinkedinIcon size={18} />
               </a>
             )}
-            {email && (
-              <a
-                href={email.href}
-                className="text-text-muted transition-colors hover:text-accent"
-                aria-label={email.label}
-              >
-                <Mail size={18} />
-              </a>
-            )}
           </motion.div>
 
           <motion.div className="mt-10" variants={itemVariants}>
@@ -143,22 +117,25 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.a
-        href="#work"
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-text-muted transition-colors hover:text-accent"
-        aria-label="Scroll to work section"
+      <motion.div
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: reduced ? 0 : 1.5, duration: duration.normal }}
       >
-        <motion.div
-          animate={reduced ? {} : { y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: easing.inOut }}
+        <Link
+          to="/work"
+          className="text-text-muted transition-colors hover:text-accent"
+          aria-label="Go to work"
         >
-          <ArrowDown size={20} />
-        </motion.div>
-      </motion.a>
+          <motion.div
+            animate={reduced ? {} : { y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: easing.inOut }}
+          >
+            <ArrowDown size={20} />
+          </motion.div>
+        </Link>
+      </motion.div>
     </section>
   )
 }

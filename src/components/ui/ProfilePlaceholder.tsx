@@ -16,7 +16,7 @@ export function ProfilePlaceholder({ className }: ProfilePlaceholderProps) {
     >
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
         <div className="flex h-16 w-16 items-center justify-center rounded-full border border-dashed border-border-strong">
-          <span className="text-mono text-xs text-text-muted">MST</span>
+          <span className="text-mono text-xs text-text-muted">MT</span>
         </div>
         <p className="text-mono text-[0.65rem] text-text-muted">
           Add profile photo

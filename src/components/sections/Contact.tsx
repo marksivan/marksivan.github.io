@@ -1,13 +1,10 @@
 import { motion } from 'framer-motion'
-import { ArrowUp, FileText } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
-import { personal } from '@/data/personal'
 import { socialLinks } from '@/data/socialLinks'
-import { CopyEmail } from '@/components/ui/CopyEmail'
-import { Button } from '@/components/ui/Button'
+import { ContactForm } from '@/components/ui/ContactForm'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { assetPath } from '@/lib/utils'
 import { fadeUp, staggerContainer } from '@/lib/motion'
 
 export function Contact() {
@@ -16,7 +13,7 @@ export function Contact() {
   const linkedin = socialLinks.find((l) => l.id === 'linkedin')
 
   return (
-    <SectionWrapper id="contact" ariaLabel="Contact">
+    <SectionWrapper ariaLabel="Contact">
       <motion.div
         className="mx-auto max-w-2xl text-center"
         initial={reduced ? false : 'hidden'}
@@ -33,26 +30,17 @@ export function Contact() {
         >
           Let&apos;s build something useful.
         </motion.h2>
-        <motion.p
-          className="mt-4 text-lg text-text-secondary"
-          variants={fadeUp}
-        >
+        <motion.p className="mt-4 text-lg text-text-secondary" variants={fadeUp}>
           I&apos;m interested in software engineering opportunities, ambitious student
           projects, and conversations about technology, products, and systems.
         </motion.p>
 
-        <motion.div
-          className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
-          variants={fadeUp}
-        >
-          <Button variant="primary" href={`mailto:${personal.email}`} magnetic>
-            Send email
-          </Button>
-          <CopyEmail email={personal.email} />
+        <motion.div className="mt-10" variants={fadeUp}>
+          <ContactForm />
         </motion.div>
 
         <motion.div
-          className="mt-8 flex flex-wrap items-center justify-center gap-6"
+          className="mt-10 flex flex-wrap items-center justify-center gap-6"
           variants={fadeUp}
         >
           {github && (
@@ -77,21 +65,12 @@ export function Contact() {
               LinkedIn
             </a>
           )}
-          <a
-            href={assetPath(personal.resumePath)}
-            className="inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-accent"
+          <Link
+            to="/"
+            className="text-sm text-text-secondary transition-colors hover:text-accent"
           >
-            <FileText size={16} />
-            Résumé
-          </a>
-          <a
-            href="#hero"
-            className="inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-accent"
-            aria-label="Back to top"
-          >
-            <ArrowUp size={16} />
-            Back to top
-          </a>
+            Back to home
+          </Link>
         </motion.div>
       </motion.div>
     </SectionWrapper>

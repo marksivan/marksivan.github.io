@@ -1,8 +1,7 @@
-import { ArrowUp } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
 import { personal } from '@/data/personal'
 import { socialLinks } from '@/data/socialLinks'
-import { assetPath } from '@/lib/utils'
 
 export function Footer() {
   const year = new Date().getFullYear()
@@ -43,20 +42,12 @@ export function Footer() {
               <LinkedinIcon size={18} />
             </a>
           )}
-          <a
-            href={assetPath(personal.resumePath)}
+          <Link
+            to="/"
             className="text-mono text-[0.65rem] text-text-secondary transition-colors hover:text-accent"
           >
-            Résumé
-          </a>
-          <a
-            href="#hero"
-            className="inline-flex items-center gap-1.5 text-mono text-[0.65rem] text-text-secondary transition-colors hover:text-accent"
-            aria-label="Back to top"
-          >
-            <ArrowUp size={14} aria-hidden />
-            Top
-          </a>
+            Home
+          </Link>
         </div>
       </div>
     </footer>

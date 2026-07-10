@@ -12,8 +12,8 @@ export function NetworkFallback({ className }: NetworkFallbackProps) {
       >
         <defs>
           <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#2ec4a0" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#2ec4a0" stopOpacity="0" />
+            <stop offset="0%" stopColor="#4f9cf9" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#4f9cf9" stopOpacity="0" />
           </radialGradient>
         </defs>
         {/* Connection lines */}
@@ -57,14 +57,14 @@ export function NetworkFallback({ className }: NetworkFallbackProps) {
           </g>
         ))}
         {/* Animated signal dots via CSS */}
-        <circle r="2" fill="#2ec4a0" opacity="0.8">
+        <circle r="2" fill="#4f9cf9" opacity="0.8">
           <animateMotion
             dur="3s"
             repeatCount="indefinite"
             path="M100,200 L250,120 L400,200 L500,150"
           />
         </circle>
-        <circle r="2" fill="#2ec4a0" opacity="0.6">
+        <circle r="2" fill="#4f9cf9" opacity="0.6">
           <animateMotion
             dur="4s"
             repeatCount="indefinite"

@@ -1,15 +1,13 @@
 import { useEffect, useRef, useCallback, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { navigation } from '@/data/navigation'
 import { personal } from '@/data/personal'
-import { useActiveSection } from '@/hooks/useActiveSection'
 import { useScrollLock } from '@/hooks/useScrollLock'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { assetPath, cn } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { duration, easing } from '@/lib/motion'
-
-const sectionIds = navigation.map((n) => n.id)
 
 interface NavigationProps {
   visible: boolean
@@ -18,7 +16,7 @@ interface NavigationProps {
 export function Navigation({ visible }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const activeSection = useActiveSection(sectionIds)
+  const location = useLocation()
   const reduced = useReducedMotion()
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -31,6 +29,10 @@ export function Navigation({ visible }: NavigationProps) {
   }, [])
 
   useEffect(() => {
+    setMenuOpen(false)
+  }, [location.pathname])
+
+  useEffect(() => {
     if (!menuOpen) return
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setMenuOpen(false)
@@ -41,14 +43,19 @@ export function Navigation({ visible }: NavigationProps) {
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
 
+  const isActive = (path: string) => {
+    if (path === '/') return location.pathname === '/'
+    return location.pathname === path || location.pathname.startsWith(`${path}/`)
+  }
+
   return (
     <>
       <motion.header
         className={cn(
           'fixed top-0 right-0 left-0 z-50 transition-colors duration-300',
           scrolled || menuOpen
-            ? 'border-b border-border bg-bg-primary/80 backdrop-blur-md'
-            : 'bg-transparent',
+            ? 'border-b border-border bg-bg-primary/90 backdrop-blur-md'
+            : 'bg-bg-primary/40 backdrop-blur-sm',
         )}
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: visible ? 0 : -80, opacity: visible ? 1 : 0 }}
@@ -58,39 +65,31 @@ export function Navigation({ visible }: NavigationProps) {
           className="container flex h-16 items-center justify-between"
           aria-label="Main navigation"
         >
-          <a
-            href="#hero"
-            className="font-display text-lg font-bold tracking-tight text-text-primary"
-            aria-label="Mark Sivan Tamakloe — Home"
+          <Link
+            to="/"
+            className="font-display text-base font-bold tracking-tight text-text-primary transition-colors hover:text-accent md:text-lg"
+            aria-label="Mark Tamakloe — Home"
           >
-            {personal.initials}
-          </a>
+            {personal.displayName}
+          </Link>
 
           <ul className="hidden items-center gap-1 md:flex">
             {navigation.map((item) => (
               <li key={item.id}>
-                <a
-                  href={item.href}
+                <Link
+                  to={item.path}
                   className={cn(
                     'rounded-full px-4 py-2 text-sm transition-colors',
-                    activeSection === item.id
+                    isActive(item.path)
                       ? 'text-accent'
                       : 'text-text-secondary hover:text-text-primary',
                   )}
-                  aria-current={activeSection === item.id ? 'true' : undefined}
+                  aria-current={isActive(item.path) ? 'page' : undefined}
                 >
                   {item.label}
-                </a>
+                </Link>
               </li>
             ))}
-            <li>
-              <a
-                href={assetPath(personal.resumePath)}
-                className="ml-2 rounded-full border border-border px-4 py-2 text-sm text-text-primary transition-colors hover:border-accent/40"
-              >
-                Résumé
-              </a>
-            </li>
           </ul>
 
           <button
@@ -111,7 +110,7 @@ export function Navigation({ visible }: NavigationProps) {
           <motion.div
             ref={menuRef}
             id="mobile-menu"
-            className="fixed inset-0 z-40 flex flex-col bg-bg-primary/95 backdrop-blur-lg md:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-bg-primary/98 backdrop-blur-lg md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -131,35 +130,34 @@ export function Navigation({ visible }: NavigationProps) {
               </button>
             </div>
             <ul className="flex flex-1 flex-col items-center justify-center gap-2">
+              <motion.li
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <Link
+                  to="/"
+                  onClick={closeMenu}
+                  className="block px-6 py-3 font-display text-2xl font-semibold text-text-primary"
+                >
+                  Home
+                </Link>
+              </motion.li>
               {navigation.map((item, i) => (
                 <motion.li
                   key={item.id}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: reduced ? 0 : i * 0.05 }}
+                  transition={{ delay: reduced ? 0 : (i + 1) * 0.05 }}
                 >
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.path}
                     onClick={closeMenu}
                     className="block px-6 py-3 font-display text-2xl font-semibold text-text-primary"
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
-              <motion.li
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: reduced ? 0 : navigation.length * 0.05 }}
-              >
-                <a
-                  href={assetPath(personal.resumePath)}
-                  onClick={closeMenu}
-                  className="mt-4 inline-block rounded-full border border-accent/30 px-6 py-3 text-sm text-accent"
-                >
-                  Résumé
-                </a>
-              </motion.li>
             </ul>
           </motion.div>
         )}

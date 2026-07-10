@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
-import { GithubIcon } from '@/components/ui/SocialIcons'
 import { Link } from 'react-router-dom'
 import type { Project } from '@/types'
+import { brandIcons } from '@/lib/skillIcons'
+import { BrandLogo } from '@/components/ui/SkillIcon'
 import { ProjectVisual } from './ProjectVisual'
 import { Tag } from '@/components/ui/Tag'
+import { GithubIcon } from '@/components/ui/SocialIcons'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
-import { cn, getBasePath } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { fadeUp } from '@/lib/motion'
 
 interface ProjectShowcaseItemProps {
@@ -39,14 +41,19 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
       </div>
 
       <div className={cn('order-1', isReversed ? 'lg:order-2' : 'lg:order-1')}>
-        <p className="text-mono mb-3 text-accent">{project.category}</p>
+        <div className="mb-3 flex flex-wrap items-center gap-3">
+          <p className="text-mono text-accent">{project.category}</p>
+          {project.brands?.map((b) => (
+            <BrandLogo key={b} brand={brandIcons[b]} size={20} className="p-1.5" />
+          ))}
+        </div>
         <h3 className="text-display text-[clamp(1.5rem,3.5vw,2.25rem)] font-bold leading-tight text-text-primary">
           {project.title}
         </h3>
         <p className="mt-4 text-text-secondary leading-relaxed">{project.description}</p>
 
         <ul className="mt-4 space-y-1.5">
-          {project.highlights.slice(0, 4).map((h) => (
+          {project.highlights.map((h) => (
             <li key={h} className="flex items-start gap-2 text-sm text-text-secondary">
               <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden />
               {h}
@@ -64,10 +71,7 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
           {project.links.map((link) => {
             if (link.type === 'professional') {
               return (
-                <span
-                  key={link.label}
-                  className="text-mono text-[0.65rem] text-text-muted"
-                >
+                <span key={link.label} className="text-mono text-[0.65rem] text-text-muted">
                   {link.label}
                 </span>
               )
@@ -87,7 +91,7 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
             )
           })}
           <Link
-            to={`${getBasePath()}/project/${project.slug}`}
+            to={`/project/${project.slug}`}
             className="inline-flex items-center gap-1.5 text-sm text-text-secondary transition-colors hover:text-accent"
           >
             Case study

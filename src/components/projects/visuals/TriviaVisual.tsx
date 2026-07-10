@@ -4,7 +4,7 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 const tiers = [
   { label: 'Hard', y: 40, color: '#e06060' },
   { label: 'Medium', y: 110, color: '#f0a030' },
-  { label: 'Easy', y: 180, color: '#2ec4a0' },
+  { label: 'Easy', y: 180, color: '#4f9cf9' },
 ]
 
 export function TriviaVisual() {

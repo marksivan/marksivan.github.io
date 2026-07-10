@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
 const books = [
-  { x: 60, y: 80, color: '#2ec4a0', title: 'Book A' },
+  { x: 60, y: 80, color: '#4f9cf9', title: 'Book A' },
   { x: 180, y: 60, color: '#4a9eff', title: 'Book B' },
   { x: 300, y: 90, color: '#f0a030', title: 'Book C' },
   { x: 120, y: 180, color: '#e06090', title: 'Book D' },

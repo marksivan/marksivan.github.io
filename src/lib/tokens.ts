@@ -11,7 +11,7 @@ export const colors = {
     muted: '#5c6474',
   },
   accent: {
-    DEFAULT: '#2ec4a0',
+    DEFAULT: '#4f9cf9',
     muted: 'rgba(46, 196, 160, 0.15)',
     glow: 'rgba(46, 196, 160, 0.35)',
   },
