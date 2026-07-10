@@ -6,9 +6,9 @@ export const education: EducationItem[] = [
     school: 'Williams College',
     degree: 'B.A. candidate in Computer Science',
     location: 'Williamstown, Massachusetts',
-    period: 'Expected June 2028',
+    period: 'Graduating June 2028',
     href: 'https://www.williams.edu/',
-    logo: '/images/williams-college.svg',
+    logo: '/images/williams-college.jpg',
     highlights: [
       'Data structures',
       'Algorithms',

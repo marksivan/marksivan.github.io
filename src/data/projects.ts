@@ -108,6 +108,41 @@ export const projects: Project[] = [
     },
   },
   {
+    id: 'flixster',
+    slug: 'flixster',
+    category: 'Full-Stack · Movie Discovery',
+    title: 'Flixster — browse and track movies',
+    description:
+      'A movie discovery web app powered by the TMDB API. Search popular films, sort by rating or release date, save favorites and watched lists, and watch trailers without leaving the page.',
+    highlights: [
+      'TMDB API integration',
+      'Search, sort, and pagination',
+      'Favorites and watched lists',
+      'Movie detail modals with trailers',
+      'Responsive sidebar navigation',
+    ],
+    technologies: ['JavaScript', 'HTML', 'CSS', 'TMDB API', 'Render'],
+    links: [
+      { type: 'github', label: 'Repository', href: 'https://github.com/marksivan/flixster' },
+      { type: 'live', label: 'Live demo', href: 'https://flixster-starter-ck7v.onrender.com/' },
+    ],
+    visual: 'flixster',
+    layout: 'right',
+    caseStudy: {
+      overview:
+        'Flixster is a movie discovery web application that lets users browse, search, and explore current films using data from The Movie Database (TMDB) API.',
+      problem:
+        'Finding what to watch is easier when you can search, compare ratings, and keep track of what you have already seen — without jumping between disconnected pages.',
+      role: 'Sole developer — designed and built the frontend, API integration, and list management features.',
+      approach:
+        'Built a JavaScript web app that fetches movie data from TMDB, renders searchable and sortable results, and stores favorites and watched movies in local state with modal detail views and embedded trailers.',
+      challenges:
+        'Keeping pagination and sorting responsive while loading poster-heavy results, and making list management feel instant across Home, Favorites, and Watched views.',
+      outcome:
+        'A deployed movie browsing app with search, sorting, personal lists, detail modals, and trailer playback — live on Render.',
+    },
+  },
+  {
     id: 'trivia',
     slug: 'adaptive-trivia',
     category: 'Desktop Application · Data Structures',

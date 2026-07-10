@@ -35,7 +35,7 @@ export interface Project {
   highlights: string[]
   technologies: string[]
   links: ProjectLink[]
-  visual: 'pix-sync' | 'storystack' | 'smart-clerk' | 'trivia'
+  visual: 'pix-sync' | 'storystack' | 'smart-clerk' | 'trivia' | 'flixster'
   layout: 'left' | 'right'
   brands?: ('meta' | 'whatsapp')[]
   caseStudy: ProjectCaseStudy
