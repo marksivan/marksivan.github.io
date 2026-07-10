@@ -1,0 +1,83 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { skillGroups } from '@/data/skills'
+import { AnimatedHeading } from '@/components/motion/AnimatedHeading'
+import { SectionWrapper } from '@/components/layout/SectionWrapper'
+import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { cn } from '@/lib/utils'
+
+export function Skills() {
+  const [active, setActive] = useState(skillGroups[0].id)
+  const reduced = useReducedMotion()
+  const activeGroup = skillGroups.find((g) => g.id === active) ?? skillGroups[0]
+
+  return (
+    <SectionWrapper id="skills" ariaLabel="Skills and toolkit">
+      <AnimatedHeading
+        eyebrow="Toolkit"
+        title="How I build"
+        subtitle="Organized by how I apply them — not by arbitrary proficiency scores."
+      />
+
+      <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
+        {/* Filter tabs */}
+        <div className="flex flex-row gap-2 overflow-x-auto lg:flex-col" role="tablist" aria-label="Skill categories">
+          {skillGroups.map((group) => (
+            <button
+              key={group.id}
+              type="button"
+              role="tab"
+              aria-selected={active === group.id}
+              aria-controls={`panel-${group.id}`}
+              onClick={() => setActive(group.id)}
+              className={cn(
+                'shrink-0 rounded-lg border px-4 py-3 text-left text-sm transition-colors min-h-[44px]',
+                active === group.id
+                  ? 'border-accent/30 bg-accent-muted text-accent'
+                  : 'border-border text-text-secondary hover:border-border-strong hover:text-text-primary',
+              )}
+            >
+              <span className="text-mono text-[0.6rem]">{group.label}</span>
+              <span className="mt-0.5 block text-xs text-text-muted">
+                {group.items.length} items
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Skills panel */}
+        <div
+          id={`panel-${activeGroup.id}`}
+          role="tabpanel"
+          aria-label={activeGroup.label}
+          className="surface-elevated min-h-[200px] p-6 md:p-8"
+        >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeGroup.id}
+              initial={reduced ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduced ? undefined : { opacity: 0, y: -12 }}
+              transition={{ duration: reduced ? 0.01 : 0.3 }}
+            >
+              <h3 className="text-mono mb-6 text-accent">{activeGroup.label}</h3>
+              <div className="flex flex-wrap gap-2">
+                {activeGroup.items.map((skill, i) => (
+                  <motion.span
+                    key={skill}
+                    className="rounded-full border border-border px-4 py-2 text-sm text-text-primary"
+                    initial={reduced ? false : { opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: reduced ? 0 : i * 0.03 }}
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+    </SectionWrapper>
+  )
+}
