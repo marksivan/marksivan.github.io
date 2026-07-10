@@ -58,7 +58,7 @@ export function Hero() {
           className="max-w-3xl"
         >
           <motion.p className="text-mono mb-6 text-accent" variants={itemVariants}>
-            Software engineer · Williams College
+            Software engineer
           </motion.p>
 
           <motion.h1

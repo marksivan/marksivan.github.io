@@ -52,6 +52,17 @@ export interface ExperienceItem {
   brands?: ('meta' | 'whatsapp')[]
 }
 
+export interface EducationItem {
+  id: string
+  school: string
+  degree: string
+  location: string
+  period: string
+  href: string
+  logo: string
+  highlights: string[]
+}
+
 export interface SkillGroup {
   id: string
   label: string

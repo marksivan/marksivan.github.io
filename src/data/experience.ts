@@ -28,21 +28,4 @@ export const experience: ExperienceItem[] = [
       'Assisted more than 200 students with Okta Verify enrollment and account access.',
     ],
   },
-  {
-    id: 'williams',
-    organization: 'Williams College',
-    role: 'B.A. candidate in Computer Science',
-    location: 'Williamstown, Massachusetts',
-    period: 'Expected June 2028',
-    type: 'education',
-    highlights: [
-      'Data structures',
-      'Algorithms',
-      'Artificial intelligence',
-      'Computer organization',
-      'Statistics',
-      'Linear algebra',
-      'Discrete mathematics',
-    ],
-  },
 ]
