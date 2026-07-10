@@ -44,7 +44,7 @@ export function Education() {
                       alt=""
                       width={72}
                       height={72}
-                      className="rounded-xl transition-transform group-hover:scale-[1.02]"
+                      className="h-[72px] w-[72px] rounded-xl object-cover transition-transform group-hover:scale-[1.02]"
                     />
                   </a>
 

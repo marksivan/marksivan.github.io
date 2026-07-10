@@ -3,12 +3,14 @@ import { PixSyncVisual } from './visuals/PixSyncVisual'
 import { StoryStackVisual } from './visuals/StoryStackVisual'
 import { SmartClerkVisual } from './visuals/SmartClerkVisual'
 import { TriviaVisual } from './visuals/TriviaVisual'
+import { FlixsterVisual } from './visuals/FlixsterVisual'
 
 const visualMap = {
   'pix-sync': PixSyncVisual,
   storystack: StoryStackVisual,
   'smart-clerk': SmartClerkVisual,
   trivia: TriviaVisual,
+  flixster: FlixsterVisual,
 }
 
 interface ProjectVisualProps {
