@@ -22,7 +22,7 @@ export function Experience() {
   const signalY = useTransform(scrollYProgress, [0, 1], ['0%', '95%'])
 
   return (
-    <SectionWrapper ariaLabel="Experience and education">
+    <SectionWrapper ariaLabel="Experience">
       <div className="relative">
         <WhirlBackground variant="section" />
 
@@ -88,9 +88,7 @@ export function Experience() {
                   )}
                   whileHover={reduced ? {} : { y: -2 }}
                 >
-                  <p className="text-mono text-[0.65rem] text-accent">
-                    {item.type === 'education' ? 'Education' : 'Work'}
-                  </p>
+                  <p className="text-mono text-[0.65rem] text-accent">Work</p>
                   {item.brands && item.brands.length > 0 && (
                     <div
                       className={cn(

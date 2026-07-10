@@ -74,9 +74,6 @@ export function About() {
             variants={staggerContainer}
           >
             {[
-              { label: 'Education', value: `${personal.education.school}` },
-              { label: 'Degree', value: personal.education.degree },
-              { label: 'Graduation', value: personal.education.graduation },
               { label: 'Based in', value: personal.location.current },
             ].map((item) => (
               <motion.div key={item.label} variants={fadeUp}>
