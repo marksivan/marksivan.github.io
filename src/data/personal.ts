@@ -13,4 +13,5 @@ export const personal = {
     graduation: 'June 2028',
   },
   availability: 'Open to software engineering opportunities',
+  resumeUrl: '/resume.pdf',
 } as const

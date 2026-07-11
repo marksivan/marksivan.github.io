@@ -7,18 +7,16 @@ export const projects: Project[] = [
     category: 'Internship · WhatsApp Payments',
     title: 'PIX payment sync across Android and WhatsApp Web',
     description:
-      'Internship work on WhatsApp Payments spanning Android and Web. Built real-time synchronization for PIX keys on companion devices in Kotlin and Java, keeping payment information consistent across linked accounts in a market of 140M+ users. Designed and built the Payments Home for WhatsApp Web in React, where users can view, add, and manage PIX keys from linked devices.',
+      'Built synchronization for PIX payment keys across linked Android devices and a React-based Payments Home for WhatsApp Web.',
     highlights: [
-      'Real-time PIX sync on Android companion devices',
-      'Payments Home for WhatsApp Web (React, JavaScript)',
-      'Architecture reviews and hybrid code-sharing model',
-      'XMPP + SyncD synchronization layer',
-      'Production payments at scale',
+      'Kotlin/Java synchronization using XMPP and SyncD',
+      'React experience for viewing and managing PIX keys',
+      'Architecture investigation and design reviews',
     ],
-    technologies: ['Kotlin', 'Java', 'React', 'JavaScript', 'XMPP', 'SyncD', 'Android'],
+    featured: true,
+    technologies: ['Kotlin', 'Java', 'React', 'XMPP', 'SyncD', 'Android'],
     links: [{ type: 'professional', label: 'Professional experience' }],
     visual: 'pix-sync',
-    caseStudyHref: 'https://faq.whatsapp.com/1013401987232838/?cms_platform=web',
     layout: 'right',
     brands: ['whatsapp', 'meta'],
     caseStudy: {
@@ -46,10 +44,9 @@ export const projects: Project[] = [
     highlights: [
       'Multi-language code execution',
       'Step-by-step execution tracing',
-      'Variable and stack inspection',
       'Interactive data structure views',
-      'Monaco editor with stdin support',
     ],
+    featured: true,
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Monaco Editor', 'Pyodide'],
     links: [
       { type: 'github', label: 'Repository', href: 'https://github.com/marksivan/VisualTrace' },
@@ -84,9 +81,8 @@ export const projects: Project[] = [
       'Adaptive symptom questionnaires',
       'Structured clinical documentation',
       'Safety-conscious product design',
-      'Clinician-editable outputs',
-      '~8,500 lines of JavaScript',
     ],
+    featured: true,
     technologies: ['JavaScript', 'HTML', 'CSS'],
     links: [
       { type: 'github', label: 'Repository', href: 'https://github.com/marksivan/smart-clerk' },

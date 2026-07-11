@@ -3,15 +3,46 @@ import { projects } from '@/data/projects'
 import { ProjectShowcaseItem } from '@/components/projects/ProjectShowcaseItem'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 
-export function Work() {
+interface WorkProps {
+  featuredOnly?: boolean
+  showMoreProjects?: boolean
+}
+
+export function Work({ featuredOnly = false, showMoreProjects = false }: WorkProps) {
+  const featured = projects.filter((project) => project.featured)
+  const remaining = projects.filter((project) => !project.featured)
+  const visibleProjects = featuredOnly ? featured : projects
+
   return (
     <SectionWrapper id="work" ariaLabel="Projects" wide>
-      <h2 className="text-display mb-12 text-[clamp(2rem,5vw,3.25rem)] font-bold text-text-primary md:mb-16">
-        Projects
-      </h2>
-      {projects.map((project, index) => (
-        <ProjectShowcaseItem key={project.id} project={project} index={index} />
+      <div className="mb-12 max-w-2xl md:mb-16">
+        <p className="text-mono mb-3 text-accent">Work</p>
+        <h2 className="text-display text-[clamp(2rem,5vw,3.25rem)] font-bold text-text-primary">
+          {featuredOnly ? 'Selected work' : 'Projects'}
+        </h2>
+        {featuredOnly && (
+          <p className="mt-4 text-text-secondary leading-relaxed">
+            Payment infrastructure, developer tools, and product prototypes that show how I think
+            about systems, interfaces, and real users.
+          </p>
+        )}
+      </div>
+
+      {visibleProjects.map((project, index) => (
+        <ProjectShowcaseItem key={project.id} project={project} index={index} compact />
       ))}
+
+      {featuredOnly && showMoreProjects && remaining.length > 0 && (
+        <div className="mt-24 border-t border-border pt-16 md:mt-32">
+          <h3 className="text-display mb-10 text-2xl font-bold text-text-primary md:mb-12">
+            More projects
+          </h3>
+          {remaining.map((project, index) => (
+            <ProjectShowcaseItem key={project.id} project={project} index={index} compact />
+          ))}
+        </div>
+      )}
+
       <div className="mt-16 text-center">
         <a
           href="https://github.com/marksivan"

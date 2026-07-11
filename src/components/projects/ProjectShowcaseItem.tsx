@@ -18,14 +18,16 @@ const brandLinks = {
 interface ProjectShowcaseItemProps {
   project: Project
   index: number
+  compact?: boolean
 }
 
-export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps) {
+export function ProjectShowcaseItem({ project, index, compact = false }: ProjectShowcaseItemProps) {
   const reduced = useReducedMotion()
   const isReversed = project.layout === 'right'
   const imageOnLeft = isReversed
   const hingeOrigin = imageOnLeft ? 'left center' : 'right center'
   const hoverRotateY = imageOnLeft ? 10 : -10
+  const highlights = compact ? project.highlights.slice(0, 3) : project.highlights
 
   const visual = (
     <ProjectVisual project={project} />
@@ -34,7 +36,7 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
   const imageFrame = (
     <div className="perspective-[1400px]">
       <motion.div
-        className="rounded-xl will-change-transform"
+        className="rounded-lg will-change-transform"
         style={{ transformOrigin: hingeOrigin, transformStyle: 'preserve-3d' }}
         whileHover={
           reduced
@@ -52,7 +54,7 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
             href={project.imageHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            className="block rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
             aria-label={`Open ${project.title}`}
           >
             {visual}
@@ -100,7 +102,7 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
         <p className="mt-4 text-text-secondary leading-relaxed">{project.description}</p>
 
         <ul className="mt-4 space-y-1.5">
-          {project.highlights.map((h) => (
+          {highlights.map((h) => (
             <li key={h} className="flex items-start gap-2 text-sm text-text-secondary">
               <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden />
               {h}
@@ -108,13 +110,13 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
           ))}
         </ul>
 
-        <div className="mt-5 flex flex-wrap gap-2">
+        <div className="mt-5 flex flex-wrap gap-1.5">
           {project.technologies.map((t) => (
             <span
               key={t}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-mono text-[0.65rem] text-text-secondary"
+              className="inline-flex items-center gap-1.5 border border-border px-2.5 py-1 text-mono text-[0.6rem] text-text-secondary"
             >
-              <SkillIcon name={t} size={14} />
+              <SkillIcon name={t} size={12} />
               {t}
             </span>
           ))}
@@ -143,17 +145,6 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
               </a>
             )
           })}
-          {project.caseStudyHref && (
-            <a
-              href={project.caseStudyHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-text-secondary transition-colors hover:text-accent"
-            >
-              Case study
-              <ExternalLink size={14} />
-            </a>
-          )}
         </div>
       </div>
     </motion.article>

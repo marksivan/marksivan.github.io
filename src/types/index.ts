@@ -8,7 +8,10 @@ export interface SocialLink {
 export interface NavItem {
   id: string
   label: string
-  path: string
+  path?: string
+  hash?: string
+  href?: string
+  external?: boolean
 }
 
 export interface ProjectLink {
@@ -33,6 +36,7 @@ export interface Project {
   title: string
   description: string
   highlights: string[]
+  featured?: boolean
   technologies: string[]
   links: ProjectLink[]
   visual: 'pix-sync' | 'storystack' | 'smart-clerk' | 'trivia' | 'flixster'

@@ -28,7 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ variant = 'primary', magnetic = false, className, children, href, external, ...props }, ref) => {
     const reduced = useReducedMotion()
     const classes = cn(
-      'inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm transition-colors min-h-[44px] min-w-[44px]',
+      'inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm transition-colors min-h-[44px] min-w-[44px]',
       variants[variant],
       className,
     )
