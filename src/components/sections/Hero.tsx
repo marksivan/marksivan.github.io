@@ -25,8 +25,9 @@ export function Hero() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 })
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 2
-    const y = (e.clientY / window.innerHeight - 0.5) * 2
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2
     setMouse({ x, y })
   }, [])
 
@@ -47,84 +48,83 @@ export function Hero() {
     <section
       id="about"
       className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-border"
-      onMouseMove={handleMouseMove}
       aria-label="About Mark"
     >
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <HeroVisual
-          mouseX={mouse.x}
-          mouseY={mouse.y}
-          className="absolute inset-0 h-full w-full opacity-40 gradient-mask-b"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/20 via-transparent to-bg-primary" />
-      </div>
-
-      <motion.div
-        className="absolute top-24 right-[clamp(1.25rem,5vw,3.5rem)] z-20"
-        initial={reduced ? false : { opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: duration.reveal, ease: easing.smooth, delay: reduced ? 0 : 0.2 }}
-      >
-        <ProfilePhoto className="h-36 w-36 md:h-40 md:w-40" />
-      </motion.div>
-
       <div className="container relative z-10 pt-24 pb-20">
-        <motion.div
-          initial={reduced ? false : 'hidden'}
-          animate="visible"
-          variants={staggerContainer}
-          className="max-w-3xl pr-36 sm:pr-40 md:pr-44 lg:pr-48"
-        >
-          <motion.h1
-            className="text-display text-[clamp(2.5rem,6.5vw,4.5rem)] font-bold leading-[1.05] text-text-primary"
-            variants={itemVariants}
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_minmax(0,22rem)] xl:grid-cols-[1fr_minmax(0,26rem)] lg:gap-10 xl:gap-16">
+          <motion.div
+            initial={reduced ? false : 'hidden'}
+            animate="visible"
+            variants={staggerContainer}
+            className="max-w-3xl"
           >
-            Shaping the{' '}
-            <span className="text-accent">digital landscape.</span>
-          </motion.h1>
+            <motion.h1
+              className="text-display text-[clamp(2.5rem,6.5vw,4.5rem)] font-bold leading-[1.05] text-text-primary"
+              variants={itemVariants}
+            >
+              Shaping the{' '}
+              <span className="text-accent">digital landscape.</span>
+            </motion.h1>
 
-          <motion.p
-            className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary"
-            variants={itemVariants}
-          >
-            Using software engineering and data to build user-centered solutions.
-          </motion.p>
+            <motion.p
+              className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary"
+              variants={itemVariants}
+            >
+              Using software engineering and data to build user-centered solutions.
+            </motion.p>
 
-          <motion.div className="mt-8 flex flex-wrap items-center gap-4" variants={itemVariants}>
-            <Button variant="primary" magnetic onClick={scrollToWork}>
-              View projects
-            </Button>
-            <Button variant="outline" onClick={scrollToContact}>
-              Get in touch
-            </Button>
+            <motion.div className="mt-8 flex flex-wrap items-center gap-4" variants={itemVariants}>
+              <Button variant="primary" magnetic onClick={scrollToWork}>
+                View projects
+              </Button>
+              <Button variant="outline" onClick={scrollToContact}>
+                Get in touch
+              </Button>
+            </motion.div>
+
+            <motion.div className="mt-6 flex items-center gap-4" variants={itemVariants}>
+              {github && (
+                <a
+                  href={github.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-text-muted transition-colors hover:text-accent"
+                  aria-label={github.label}
+                >
+                  <GithubIcon size={18} />
+                </a>
+              )}
+              {linkedin && (
+                <a
+                  href={linkedin.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-text-muted transition-colors hover:text-accent"
+                  aria-label={linkedin.label}
+                >
+                  <LinkedinIcon size={18} />
+                </a>
+              )}
+            </motion.div>
           </motion.div>
 
-          <motion.div className="mt-6 flex items-center gap-4" variants={itemVariants}>
-            {github && (
-              <a
-                href={github.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-muted transition-colors hover:text-accent"
-                aria-label={github.label}
-              >
-                <GithubIcon size={18} />
-              </a>
-            )}
-            {linkedin && (
-              <a
-                href={linkedin.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-text-muted transition-colors hover:text-accent"
-                aria-label={linkedin.label}
-              >
-                <LinkedinIcon size={18} />
-              </a>
-            )}
+          <motion.div
+            className="mx-auto flex w-full max-w-sm items-center justify-center gap-3 pt-2 sm:max-w-md sm:gap-4 lg:mx-0 lg:ml-auto lg:justify-end lg:pt-6"
+            initial={reduced ? false : { opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: duration.reveal, ease: easing.smooth, delay: reduced ? 0 : 0.15 }}
+            onMouseMove={handleMouseMove}
+          >
+            <div className="relative h-40 w-40 shrink-0 sm:h-48 sm:w-48 md:h-52 md:w-52">
+              <HeroVisual
+                mouseX={mouse.x}
+                mouseY={mouse.y}
+                className="h-full w-full opacity-80"
+              />
+            </div>
+            <ProfilePhoto className="h-32 w-32 shrink-0 sm:h-36 sm:w-36 md:h-40 md:w-40" />
           </motion.div>
-
-        </motion.div>
+        </div>
       </div>
 
       <motion.div
