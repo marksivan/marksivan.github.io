@@ -18,14 +18,8 @@ export function Work({ featuredOnly = false, showMoreProjects = false }: WorkPro
       <div className="mb-12 max-w-2xl md:mb-16">
         <p className="text-mono mb-3 text-accent">Work</p>
         <h2 className="text-display text-[clamp(2rem,5vw,3.25rem)] font-bold text-text-primary">
-          {featuredOnly ? 'Selected work' : 'Projects'}
+          Projects
         </h2>
-        {featuredOnly && (
-          <p className="mt-4 text-text-secondary leading-relaxed">
-            Payment infrastructure, developer tools, and product prototypes that show how I think
-            about systems, interfaces, and real users.
-          </p>
-        )}
       </div>
 
       {visibleProjects.map((project, index) => (

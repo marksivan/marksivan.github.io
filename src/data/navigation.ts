@@ -7,4 +7,4 @@ export const navigation: NavItem[] = [
   { id: 'contact', label: 'Contact', hash: 'contact' },
 ]
 
-export const sectionIds = ['about', 'work', 'experience', 'skills', 'contact'] as const
+export const sectionIds = ['about', 'work', 'experience', 'education', 'skills', 'contact'] as const

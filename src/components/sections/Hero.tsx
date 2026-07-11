@@ -5,7 +5,6 @@ import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
 import { socialLinks } from '@/data/socialLinks'
 import { HeroVisual } from '@/components/three/HeroVisual'
 import { Button } from '@/components/ui/Button'
-import { AvailabilityBadge } from '@/components/ui/AvailabilityBadge'
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { scrollToSection } from '@/lib/scroll'
@@ -76,30 +75,24 @@ export function Hero() {
           variants={staggerContainer}
           className="max-w-3xl pr-36 sm:pr-40 md:pr-44 lg:pr-48"
         >
-          <motion.p className="text-mono mb-6 text-accent" variants={itemVariants}>
-            Software engineer
-          </motion.p>
-
           <motion.h1
             className="text-display text-[clamp(2.5rem,6.5vw,4.5rem)] font-bold leading-[1.05] text-text-primary"
             variants={itemVariants}
           >
-            I build systems that keep people and{' '}
-            <span className="text-accent">information connected.</span>
+            Shaping the{' '}
+            <span className="text-accent">digital landscape.</span>
           </motion.h1>
 
           <motion.p
             className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary"
             variants={itemVariants}
           >
-            I&apos;m Mark, a computer science student at Williams College and software engineer.
-            I&apos;ve worked on WhatsApp Payments at Meta, building real-time sync on Android and
-            payment experiences on the web for Brazil&apos;s 140M+ user market.
+            Using software engineering and data to build user-centered solutions.
           </motion.p>
 
           <motion.div className="mt-8 flex flex-wrap items-center gap-4" variants={itemVariants}>
             <Button variant="primary" magnetic onClick={scrollToWork}>
-              View selected work
+              View projects
             </Button>
             <Button variant="outline" onClick={scrollToContact}>
               Get in touch
@@ -131,9 +124,6 @@ export function Hero() {
             )}
           </motion.div>
 
-          <motion.div className="mt-10" variants={itemVariants}>
-            <AvailabilityBadge />
-          </motion.div>
         </motion.div>
       </div>
 
