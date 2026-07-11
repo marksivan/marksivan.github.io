@@ -12,6 +12,7 @@
   --color-accent-muted: var(--theme-accent-muted);
   --color-border: var(--theme-border);
   --color-border-strong: var(--theme-border-strong);
+  --color-profile: var(--theme-profile-bg);
   --font-display: 'Syne', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -58,6 +59,7 @@
   --theme-accent-muted: rgba(46, 196, 160, 0.12);
   --theme-border: rgba(237, 232, 223, 0.1);
   --theme-border-strong: rgba(237, 232, 223, 0.16);
+  --theme-profile-bg: #1a2230;
 }
 
 [data-theme='light'] {
@@ -72,6 +74,7 @@
   --theme-accent-muted: rgba(26, 155, 127, 0.1);
   --theme-border: rgba(20, 24, 32, 0.1);
   --theme-border-strong: rgba(20, 24, 32, 0.16);
+  --theme-profile-bg: #e4dfd4;
 }
 
 html {
@@ -160,6 +163,16 @@ body {
   background: var(--theme-bg-elevated);
   border: 1px solid var(--theme-border);
   border-radius: 0.375rem;
+}
+
+.profile-photo-frame {
+  width: 220px;
+  height: 280px;
+  border-radius: 0.375rem;
+}
+
+.bg-profile {
+  background-color: var(--theme-profile-bg);
 }
 
 .gradient-mask-b {
