@@ -23,9 +23,45 @@ interface ProjectShowcaseItemProps {
 export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps) {
   const reduced = useReducedMotion()
   const isReversed = project.layout === 'right'
+  const imageOnLeft = isReversed
+  const hingeOrigin = imageOnLeft ? 'left center' : 'right center'
+  const hoverRotateY = imageOnLeft ? 10 : -10
 
   const visual = (
     <ProjectVisual project={project} />
+  )
+
+  const imageFrame = (
+    <div className="perspective-[1400px]">
+      <motion.div
+        className="rounded-xl will-change-transform"
+        style={{ transformOrigin: hingeOrigin, transformStyle: 'preserve-3d' }}
+        whileHover={
+          reduced
+            ? undefined
+            : {
+                rotateY: hoverRotateY,
+                rotateX: imageOnLeft ? -1.5 : 1.5,
+                boxShadow: '0 24px 48px -16px rgba(0, 0, 0, 0.45)',
+              }
+        }
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {project.imageHref ? (
+          <a
+            href={project.imageHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+            aria-label={`Open ${project.title}`}
+          >
+            {visual}
+          </a>
+        ) : (
+          visual
+        )}
+      </motion.div>
+    </div>
   )
 
   return (
@@ -39,25 +75,8 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
       viewport={{ once: true, margin: '-100px' }}
       variants={fadeUp}
     >
-      <div className={cn('order-2', isReversed ? 'lg:order-1' : 'lg:order-2')}>
-        <motion.div
-          whileHover={reduced ? {} : { scale: 1.01, y: -2 }}
-          transition={{ duration: 0.3 }}
-        >
-          {project.imageHref ? (
-            <a
-              href={project.imageHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-              aria-label={`Open ${project.title}`}
-            >
-              {visual}
-            </a>
-          ) : (
-            visual
-          )}
-        </motion.div>
+      <div className={cn('order-2 overflow-visible', isReversed ? 'lg:order-1' : 'lg:order-2')}>
+        {imageFrame}
       </div>
 
       <div className={cn('order-1', isReversed ? 'lg:order-2' : 'lg:order-1')}>
