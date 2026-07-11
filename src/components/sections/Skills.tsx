@@ -38,10 +38,7 @@ export function Skills() {
                   : 'border-border text-text-secondary hover:border-border-strong hover:text-text-primary',
               )}
             >
-              <span className="text-mono text-[0.6rem]">{group.label}</span>
-              <span className="mt-0.5 block text-xs text-text-muted">
-                {group.items.length} items
-              </span>
+              <span className="text-mono text-[0.65rem]">{group.label}</span>
             </button>
           ))}
         </div>

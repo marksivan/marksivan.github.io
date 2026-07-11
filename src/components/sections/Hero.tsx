@@ -129,7 +129,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            className="order-1 flex w-full justify-end sm:pr-2 lg:order-2 lg:w-auto lg:translate-x-8 lg:pt-2 xl:translate-x-12"
+            className="order-1 flex w-full justify-end sm:pr-2 lg:order-2 lg:w-auto lg:translate-x-12 lg:pt-2 xl:translate-x-16"
             initial={reduced ? false : { opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: duration.reveal, ease: easing.smooth, delay: reduced ? 0 : 0.2 }}
