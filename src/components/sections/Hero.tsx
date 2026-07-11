@@ -1,14 +1,13 @@
 import { useState, useCallback } from 'react'
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
 import { socialLinks } from '@/data/socialLinks'
 import { HeroVisual } from '@/components/three/HeroVisual'
-import { WhirlBackground } from '@/components/ui/WhirlBackground'
 import { Button } from '@/components/ui/Button'
 import { AvailabilityBadge } from '@/components/ui/AvailabilityBadge'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { scrollToSection } from '@/lib/scroll'
 import { duration, easing, staggerContainer } from '@/lib/motion'
 import type { Variants } from 'framer-motion'
 
@@ -34,20 +33,30 @@ export function Hero() {
   const github = socialLinks.find((l) => l.id === 'github')
   const linkedin = socialLinks.find((l) => l.id === 'linkedin')
 
+  const scrollToWork = (event: React.MouseEvent) => {
+    event.preventDefault()
+    scrollToSection('work', reduced ? 'auto' : 'smooth')
+  }
+
+  const scrollToContact = (event: React.MouseEvent) => {
+    event.preventDefault()
+    scrollToSection('contact', reduced ? 'auto' : 'smooth')
+  }
+
   return (
     <section
-      className="relative flex min-h-[100svh] items-center overflow-hidden"
+      id="hero"
+      className="relative flex min-h-[100svh] items-center overflow-hidden border-b border-border"
       onMouseMove={handleMouseMove}
       aria-label="Introduction"
     >
       <div className="pointer-events-none absolute inset-0 z-0">
-        <WhirlBackground variant="hero" />
         <HeroVisual
           mouseX={mouse.x}
           mouseY={mouse.y}
-          className="absolute inset-0 h-full w-full opacity-50 gradient-mask-b"
+          className="absolute inset-0 h-full w-full opacity-40 gradient-mask-b"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/30 via-transparent to-bg-primary" />
+        <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/20 via-transparent to-bg-primary" />
       </div>
 
       <div className="container relative z-10 pt-24 pb-20">
@@ -58,7 +67,7 @@ export function Hero() {
           className="max-w-3xl"
         >
           <motion.p className="text-mono mb-6 text-accent" variants={itemVariants}>
-            Software engineer
+            Software engineer · WhatsApp Payments
           </motion.p>
 
           <motion.h1
@@ -73,20 +82,18 @@ export function Hero() {
             className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary"
             variants={itemVariants}
           >
-            I&apos;m Mark, a computer science student and software engineer building
-            thoughtful products across payments, full-stack platforms, developer tools,
-            and intelligent applications.
+            I&apos;m Mark, a computer science student at Williams College and software engineer.
+            I&apos;ve worked on WhatsApp Payments at Meta, building real-time sync on Android and
+            payment experiences on the web for Brazil&apos;s 140M+ user market.
           </motion.p>
 
           <motion.div className="mt-8 flex flex-wrap items-center gap-4" variants={itemVariants}>
-            <Link to="/work">
-              <Button variant="primary" magnetic>
-                Explore my work
-              </Button>
-            </Link>
-            <Link to="/contact">
-              <Button variant="outline">Get in touch</Button>
-            </Link>
+            <Button variant="primary" magnetic onClick={scrollToWork}>
+              View selected work
+            </Button>
+            <Button variant="outline" onClick={scrollToContact}>
+              Get in touch
+            </Button>
           </motion.div>
 
           <motion.div className="mt-6 flex items-center gap-4" variants={itemVariants}>
@@ -126,8 +133,9 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: reduced ? 0 : 1.5, duration: duration.normal }}
       >
-        <Link
-          to="/work"
+        <a
+          href="#work"
+          onClick={scrollToWork}
           className="text-text-muted transition-colors hover:text-accent"
           aria-label="Go to work"
         >
@@ -137,7 +145,7 @@ export function Hero() {
           >
             <ArrowDown size={20} />
           </motion.div>
-        </Link>
+        </a>
       </motion.div>
     </section>
   )

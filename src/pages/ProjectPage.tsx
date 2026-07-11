@@ -21,7 +21,7 @@ export function ProjectPage() {
   const { caseStudy: cs } = project
 
   if (!cs) {
-    return <Navigate to="/work" replace />
+    return <Navigate to="/" replace />
   }
 
   const sections = [
@@ -38,7 +38,7 @@ export function ProjectPage() {
       <header className="border-b border-border bg-bg-primary/90 backdrop-blur-md">
         <div className="container flex h-16 items-center justify-between">
           <Link
-            to="/work"
+            to={{ pathname: '/', hash: 'work' }}
             className="inline-flex items-center gap-2 text-sm text-text-secondary transition-colors hover:text-accent"
           >
             <ArrowLeft size={16} />

@@ -1,19 +1,40 @@
 import { useState, useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { Navigation } from '@/components/navigation/Navigation'
 import { LoadingScreen } from '@/components/ui/LoadingScreen'
 import { ScrollToTop } from '@/components/layout/ScrollToTop'
 import { HomePage } from '@/pages/HomePage'
-import { WorkPage } from '@/pages/WorkPage'
-import { ExperiencePage } from '@/pages/ExperiencePage'
-import { AboutPage } from '@/pages/AboutPage'
-import { InterestsPage } from '@/pages/InterestsPage'
-import { EducationPage } from '@/pages/EducationPage'
-import { SkillsPage } from '@/pages/SkillsPage'
-import { ContactPage } from '@/pages/ContactPage'
 import { ProjectPage } from '@/pages/ProjectPage'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { scrollToSection } from '@/lib/scroll'
+
+function SectionRedirect({ section }: { section: string }) {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    navigate('/', { replace: true })
+    requestAnimationFrame(() => scrollToSection(section, 'auto'))
+  }, [navigate, section])
+
+  return null
+}
+
+function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/work" element={<SectionRedirect section="work" />} />
+      <Route path="/experience" element={<SectionRedirect section="experience" />} />
+      <Route path="/about" element={<SectionRedirect section="about" />} />
+      <Route path="/interests" element={<Navigate to="/" replace />} />
+      <Route path="/education" element={<SectionRedirect section="experience" />} />
+      <Route path="/skills" element={<SectionRedirect section="skills" />} />
+      <Route path="/contact" element={<SectionRedirect section="contact" />} />
+      <Route path="/project/:slug" element={<ProjectPage />} />
+    </Routes>
+  )
+}
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -61,17 +82,7 @@ function App() {
 
       <Navigation visible={navVisible || !loading} />
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/work" element={<WorkPage />} />
-        <Route path="/experience" element={<ExperiencePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/interests" element={<InterestsPage />} />
-        <Route path="/education" element={<EducationPage />} />
-        <Route path="/skills" element={<SkillsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/project/:slug" element={<ProjectPage />} />
-      </Routes>
+      <AppRoutes />
     </BrowserRouter>
   )
 }

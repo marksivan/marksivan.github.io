@@ -24,7 +24,7 @@ export function ProjectVisual({ project }: ProjectVisualProps) {
 
   if (project.screenshot && !screenshotFailed) {
     return (
-      <div className="h-full min-h-[200px] w-full overflow-hidden rounded-xl border border-border bg-bg-surface">
+      <div className="h-full min-h-[200px] w-full overflow-hidden rounded-lg border border-border bg-bg-surface">
         <img
           src={project.screenshot}
           alt={`${project.title} screenshot`}

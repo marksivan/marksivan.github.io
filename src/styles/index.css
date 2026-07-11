@@ -48,30 +48,30 @@
 :root,
 [data-theme='dark'] {
   color-scheme: dark;
-  --theme-bg-primary: #0c0b10;
-  --theme-bg-surface: #15131c;
-  --theme-bg-elevated: #1e1b28;
-  --theme-text-primary: #f4f1f8;
-  --theme-text-secondary: #a8a3b8;
-  --theme-text-muted: #6b6578;
-  --theme-accent: #a855f7;
-  --theme-accent-muted: rgba(168, 85, 247, 0.14);
-  --theme-border: rgba(255, 255, 255, 0.09);
-  --theme-border-strong: rgba(255, 255, 255, 0.15);
+  --theme-bg-primary: #0b1017;
+  --theme-bg-surface: #121821;
+  --theme-bg-elevated: #1a2230;
+  --theme-text-primary: #ede8df;
+  --theme-text-secondary: #a8b0bd;
+  --theme-text-muted: #6d7583;
+  --theme-accent: #2ec4a0;
+  --theme-accent-muted: rgba(46, 196, 160, 0.12);
+  --theme-border: rgba(237, 232, 223, 0.1);
+  --theme-border-strong: rgba(237, 232, 223, 0.16);
 }
 
 [data-theme='light'] {
   color-scheme: light;
-  --theme-bg-primary: #faf9fc;
-  --theme-bg-surface: #ffffff;
-  --theme-bg-elevated: #f3f1f7;
-  --theme-text-primary: #141118;
-  --theme-text-secondary: #5c5568;
-  --theme-text-muted: #8a8496;
-  --theme-accent: #9333ea;
-  --theme-accent-muted: rgba(147, 51, 234, 0.12);
-  --theme-border: rgba(20, 17, 24, 0.08);
-  --theme-border-strong: rgba(20, 17, 24, 0.14);
+  --theme-bg-primary: #f5f2eb;
+  --theme-bg-surface: #fffdf8;
+  --theme-bg-elevated: #ece7de;
+  --theme-text-primary: #141820;
+  --theme-text-secondary: #4f5868;
+  --theme-text-muted: #7a8391;
+  --theme-accent: #1a9b7f;
+  --theme-accent-muted: rgba(26, 155, 127, 0.1);
+  --theme-border: rgba(20, 24, 32, 0.1);
+  --theme-border-strong: rgba(20, 24, 32, 0.16);
 }
 
 html {
@@ -96,7 +96,7 @@ body {
 }
 
 ::selection {
-  background: rgba(168, 85, 247, 0.28);
+  background: rgba(46, 196, 160, 0.24);
   color: var(--theme-text-primary);
 }
 
@@ -153,13 +153,13 @@ body {
 .surface {
   background: var(--theme-bg-surface);
   border: 1px solid var(--theme-border);
-  border-radius: 1rem;
+  border-radius: 0.375rem;
 }
 
 .surface-elevated {
   background: var(--theme-bg-elevated);
   border: 1px solid var(--theme-border);
-  border-radius: 1rem;
+  border-radius: 0.375rem;
 }
 
 .gradient-mask-b {

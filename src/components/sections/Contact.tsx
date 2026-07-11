@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
 import { socialLinks } from '@/data/socialLinks'
 import { ContactForm } from '@/components/ui/ContactForm'
-import { WhirlBackground } from '@/components/ui/WhirlBackground'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { fadeUp, staggerContainer } from '@/lib/motion'
@@ -14,11 +12,8 @@ export function Contact() {
   const linkedin = socialLinks.find((l) => l.id === 'linkedin')
 
   return (
-    <SectionWrapper ariaLabel="Contact">
-      <div className="relative">
-        <WhirlBackground variant="section" />
-
-        <motion.div
+    <SectionWrapper id="contact" ariaLabel="Contact">
+      <motion.div
         className="mx-auto max-w-2xl text-center"
         initial={reduced ? false : 'hidden'}
         whileInView="visible"
@@ -69,15 +64,8 @@ export function Contact() {
               LinkedIn
             </a>
           )}
-          <Link
-            to="/"
-            className="text-sm text-text-secondary transition-colors hover:text-accent"
-          >
-            Back to home
-          </Link>
         </motion.div>
-        </motion.div>
-      </div>
+      </motion.div>
     </SectionWrapper>
   )
 }

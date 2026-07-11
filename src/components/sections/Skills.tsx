@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { skillGroups } from '@/data/skills'
 import { SkillIcon } from '@/components/ui/SkillIcon'
 import { FoundationIcon, isFoundationSkill } from '@/lib/foundationIcons'
-import { WhirlBackground } from '@/components/ui/WhirlBackground'
 import { AnimatedHeading } from '@/components/motion/AnimatedHeading'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -15,10 +14,8 @@ export function Skills() {
   const activeGroup = skillGroups.find((g) => g.id === active) ?? skillGroups[0]
 
   return (
-    <SectionWrapper ariaLabel="Skills and toolkit">
+    <SectionWrapper id="skills" ariaLabel="Skills and toolkit">
       <div className="relative">
-        <WhirlBackground variant="section" />
-
         <AnimatedHeading
           eyebrow="Toolkit"
           title="How I build"
@@ -35,9 +32,9 @@ export function Skills() {
               aria-controls={`panel-${group.id}`}
               onClick={() => setActive(group.id)}
               className={cn(
-                'shrink-0 rounded-lg border px-3 py-2.5 text-left text-sm transition-colors min-h-[44px]',
+                'shrink-0 border px-3 py-2.5 text-left text-sm transition-colors min-h-[44px]',
                 active === group.id
-                  ? 'border-accent/30 bg-accent-muted text-accent'
+                  ? 'border-accent bg-accent-muted text-accent'
                   : 'border-border text-text-secondary hover:border-border-strong hover:text-text-primary',
               )}
             >
@@ -74,15 +71,15 @@ export function Skills() {
                   <motion.span
                     key={skill}
                     className={cn(
-                      'inline-flex items-center gap-2 rounded-full border border-border bg-bg-surface text-sm text-text-primary',
-                      activeGroup.id === 'foundations' ? 'px-4 py-2.5' : 'px-4 py-2',
+                      'inline-flex items-center gap-2 border border-border bg-bg-surface text-sm text-text-primary',
+                      activeGroup.id === 'foundations' ? 'px-4 py-2.5' : 'px-3 py-2',
                     )}
                     initial={reduced ? false : { opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: reduced ? 0 : i * 0.03 }}
                   >
                     {isFoundationSkill(skill) ? (
-                      <span className="flex h-7 w-7 items-center justify-center rounded-full border border-accent/20 bg-accent-muted">
+                      <span className="flex h-7 w-7 items-center justify-center border border-accent/20 bg-accent-muted">
                         <FoundationIcon name={skill} size={18} />
                       </span>
                     ) : (
