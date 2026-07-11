@@ -134,7 +134,7 @@ export const projects: Project[] = [
     visual: 'flixster',
     screenshot: '/images/projects/flixster.jpg',
     imageHref: 'https://flixster-starter-ck7v.onrender.com/',
-    layout: 'right',
+    layout: 'left',
     caseStudy: {
       overview:
         'Flixster is a movie discovery web application that lets users browse, search, and explore current films using data from The Movie Database (TMDB) API.',
@@ -171,7 +171,7 @@ export const projects: Project[] = [
     visual: 'trivia',
     screenshot: '/images/projects/trivia.jpg',
     imageHref: 'https://marksivan.github.io/trivia-application/',
-    layout: 'left',
+    layout: 'right',
     caseStudy: {
       overview:
         'A desktop trivia game that dynamically adjusts question difficulty based on player performance, using min-heaps and max-heaps to manage question tiers.',
