@@ -38,7 +38,7 @@ export function ProfilePhoto({ className }: ProfilePhotoProps) {
         alt="Mark Tamakloe"
         width={128}
         height={128}
-        className="h-full w-full object-cover object-[56%_40%]"
+        className="h-full w-full object-cover object-[48%_40%]"
         onError={() => setMissing(true)}
       />
     </div>

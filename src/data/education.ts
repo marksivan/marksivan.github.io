@@ -10,13 +10,10 @@ export const education: EducationItem[] = [
     href: 'https://www.williams.edu/',
     logo: '/images/williams-college.jpg',
     highlights: [
-      'Data structures',
-      'Algorithms',
+      'Data structures & Algorithms',
       'Artificial intelligence',
-      'Computer organization',
-      'Statistics',
-      'Linear algebra',
-      'Discrete mathematics',
+      'Computer Organization',
+      'Distributed Systems',
     ],
   },
 ]
