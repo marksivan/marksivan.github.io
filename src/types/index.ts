@@ -37,9 +37,11 @@ export interface Project {
   links: ProjectLink[]
   visual: 'pix-sync' | 'storystack' | 'smart-clerk' | 'trivia' | 'flixster'
   screenshot?: string
+  imageHref?: string
+  caseStudyHref?: string
   layout: 'left' | 'right'
   brands?: ('meta' | 'whatsapp')[]
-  caseStudy: ProjectCaseStudy
+  caseStudy?: ProjectCaseStudy
 }
 
 export interface ExperienceItem {

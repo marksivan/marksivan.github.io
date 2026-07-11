@@ -17,6 +17,7 @@ export const projects: Project[] = [
     technologies: ['Kotlin', 'Java', 'XMPP', 'SyncD', 'Android'],
     links: [{ type: 'professional', label: 'Professional experience' }],
     visual: 'pix-sync',
+    caseStudyHref: 'https://faq.whatsapp.com/1013401987232838/?cms_platform=web',
     layout: 'right',
     brands: ['whatsapp', 'meta'],
     caseStudy: {
@@ -55,6 +56,8 @@ export const projects: Project[] = [
       { type: 'github', label: 'Repository', href: 'https://github.com/Story-Stack/story-stack' },
     ],
     visual: 'storystack',
+    screenshot: '/images/projects/storystack.jpg',
+    imageHref: 'https://github.com/Story-Stack/story-stack',
     layout: 'left',
     caseStudy: {
       overview:
@@ -92,6 +95,7 @@ export const projects: Project[] = [
     ],
     visual: 'smart-clerk',
     screenshot: '/images/projects/smart-clerk.jpg',
+    imageHref: 'https://marksivan.github.io/smart-clerk/',
     layout: 'right',
     caseStudy: {
       overview:
@@ -129,6 +133,7 @@ export const projects: Project[] = [
     ],
     visual: 'flixster',
     screenshot: '/images/projects/flixster.jpg',
+    imageHref: 'https://flixster-starter-ck7v.onrender.com/',
     layout: 'right',
     caseStudy: {
       overview:
@@ -161,8 +166,11 @@ export const projects: Project[] = [
     technologies: ['Java', 'AWT', 'Swing', 'Min-heaps', 'Max-heaps'],
     links: [
       { type: 'github', label: 'Repository', href: 'https://github.com/marksivan/trivia-application' },
+      { type: 'live', label: 'Live demo', href: 'https://marksivan.github.io/trivia-application/' },
     ],
     visual: 'trivia',
+    screenshot: '/images/projects/trivia.jpg',
+    imageHref: 'https://marksivan.github.io/trivia-application/',
     layout: 'left',
     caseStudy: {
       overview:

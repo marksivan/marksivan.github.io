@@ -6,7 +6,7 @@ export const experience: ExperienceItem[] = [
     organization: 'Meta — WhatsApp Payments',
     role: 'Software Engineering Intern',
     location: 'Menlo Park, California',
-    period: 'Summer 2025',
+    period: 'Summer 2026',
     type: 'work',
     brands: ['meta', 'whatsapp'],
     highlights: [

@@ -11,14 +11,9 @@ export function Footer() {
   return (
     <footer className="border-t border-border py-10">
       <div className="container flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="font-display text-sm font-semibold text-text-primary">
-            {personal.name}
-          </p>
-          <p className="mt-1 text-sm text-text-muted">
-            © {year} · Designed and built by Mark
-          </p>
-        </div>
+        <p className="text-sm text-text-muted">
+          © {year} {personal.name}
+        </p>
         <div className="flex items-center gap-4">
           {github && (
             <a
