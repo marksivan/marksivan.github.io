@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Project } from '@/types'
 import { PixSyncVisual } from './visuals/PixSyncVisual'
 import { StoryStackVisual } from './visuals/StoryStackVisual'
@@ -18,7 +19,10 @@ interface ProjectVisualProps {
 }
 
 export function ProjectVisual({ project }: ProjectVisualProps) {
-  if (project.screenshot) {
+  const [screenshotFailed, setScreenshotFailed] = useState(false)
+  const Visual = visualMap[project.visual]
+
+  if (project.screenshot && !screenshotFailed) {
     return (
       <div className="h-full min-h-[200px] w-full overflow-hidden rounded-xl border border-border bg-bg-surface">
         <img
@@ -26,12 +30,12 @@ export function ProjectVisual({ project }: ProjectVisualProps) {
           alt={`${project.title} screenshot`}
           className="h-full w-full object-cover object-top"
           loading="lazy"
+          onError={() => setScreenshotFailed(true)}
         />
       </div>
     )
   }
 
-  const Visual = visualMap[project.visual]
   return (
     <div className="h-full min-h-[200px] w-full overflow-hidden rounded-xl border border-border bg-bg-surface">
       <Visual />

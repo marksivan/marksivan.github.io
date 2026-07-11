@@ -20,6 +20,10 @@ export function ProjectPage() {
   const { prev, next } = getAdjacentProjects(project.slug)
   const { caseStudy: cs } = project
 
+  if (!cs) {
+    return <Navigate to="/work" replace />
+  }
+
   const sections = [
     { title: 'Overview', content: cs.overview },
     { title: 'Problem', content: cs.problem },

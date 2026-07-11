@@ -22,7 +22,6 @@ export function Skills() {
         <AnimatedHeading
           eyebrow="Toolkit"
           title="How I build"
-          subtitle="Organized by how I apply them — not by arbitrary proficiency scores."
         />
 
         <div className="grid items-start gap-6 lg:grid-cols-[200px_1fr] lg:gap-8">

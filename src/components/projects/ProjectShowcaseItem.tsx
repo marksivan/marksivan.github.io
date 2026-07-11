@@ -1,15 +1,19 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight, ExternalLink } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { ExternalLink } from 'lucide-react'
 import type { Project } from '@/types'
 import { brandIcons } from '@/lib/skillIcons'
 import { BrandLogo } from '@/components/ui/SkillIcon'
+import { SkillIcon } from '@/components/ui/SkillIcon'
 import { ProjectVisual } from './ProjectVisual'
-import { Tag } from '@/components/ui/Tag'
 import { GithubIcon } from '@/components/ui/SocialIcons'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { cn } from '@/lib/utils'
 import { fadeUp } from '@/lib/motion'
+
+const brandLinks = {
+  meta: 'https://www.meta.com/',
+  whatsapp: 'https://www.whatsapp.com/',
+} as const
 
 interface ProjectShowcaseItemProps {
   project: Project
@@ -19,6 +23,10 @@ interface ProjectShowcaseItemProps {
 export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps) {
   const reduced = useReducedMotion()
   const isReversed = project.layout === 'right'
+
+  const visual = (
+    <ProjectVisual project={project} />
+  )
 
   return (
     <motion.article
@@ -36,7 +44,19 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
           whileHover={reduced ? {} : { scale: 1.01, y: -2 }}
           transition={{ duration: 0.3 }}
         >
-          <ProjectVisual project={project} />
+          {project.imageHref ? (
+            <a
+              href={project.imageHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              aria-label={`Open ${project.title}`}
+            >
+              {visual}
+            </a>
+          ) : (
+            visual
+          )}
         </motion.div>
       </div>
 
@@ -44,7 +64,15 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
         <div className="mb-3 flex flex-wrap items-center gap-3">
           <p className="text-mono text-accent">{project.category}</p>
           {project.brands?.map((b) => (
-            <BrandLogo key={b} brand={brandIcons[b]} size={20} className="p-1.5" />
+            <a
+              key={b}
+              href={brandLinks[b]}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={brandIcons[b].title}
+            >
+              <BrandLogo brand={brandIcons[b]} size={20} className="p-1.5 transition-colors hover:border-accent/30" />
+            </a>
           ))}
         </div>
         <h3 className="text-display text-[clamp(1.5rem,3.5vw,2.25rem)] font-bold leading-tight text-text-primary">
@@ -63,7 +91,13 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
 
         <div className="mt-5 flex flex-wrap gap-2">
           {project.technologies.map((t) => (
-            <Tag key={t}>{t}</Tag>
+            <span
+              key={t}
+              className="inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 text-mono text-[0.65rem] text-text-secondary"
+            >
+              <SkillIcon name={t} size={14} />
+              {t}
+            </span>
           ))}
         </div>
 
@@ -90,13 +124,17 @@ export function ProjectShowcaseItem({ project, index }: ProjectShowcaseItemProps
               </a>
             )
           })}
-          <Link
-            to={`/project/${project.slug}`}
-            className="inline-flex items-center gap-1.5 text-sm text-text-secondary transition-colors hover:text-accent"
-          >
-            Case study
-            <ArrowUpRight size={14} />
-          </Link>
+          {project.caseStudyHref && (
+            <a
+              href={project.caseStudyHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-text-secondary transition-colors hover:text-accent"
+            >
+              Case study
+              <ExternalLink size={14} />
+            </a>
+          )}
         </div>
       </div>
     </motion.article>

@@ -1,17 +1,14 @@
 import { GithubIcon } from '@/components/ui/SocialIcons'
 import { projects } from '@/data/projects'
 import { ProjectShowcaseItem } from '@/components/projects/ProjectShowcaseItem'
-import { AnimatedHeading } from '@/components/motion/AnimatedHeading'
 import { SectionWrapper } from '@/components/layout/SectionWrapper'
 
 export function Work() {
   return (
-    <SectionWrapper id="work" ariaLabel="Selected work" wide>
-      <AnimatedHeading
-        eyebrow="Selected work"
-        title="Projects where systems meet people"
-        subtitle="From payment synchronization to adaptive learning — work that connects complex infrastructure to clear experiences."
-      />
+    <SectionWrapper id="work" ariaLabel="Projects" wide>
+      <h2 className="text-display mb-12 text-[clamp(2rem,5vw,3.25rem)] font-bold text-text-primary md:mb-16">
+        Projects
+      </h2>
       {projects.map((project, index) => (
         <ProjectShowcaseItem key={project.id} project={project} index={index} />
       ))}
