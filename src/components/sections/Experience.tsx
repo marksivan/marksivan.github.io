@@ -126,7 +126,7 @@ export function Experience() {
               {[williams.location, williams.period].filter(Boolean).join(' · ')}
             </p>
             <ul className="mt-4 space-y-2">
-              {williams.highlights.slice(0, 3).map((highlight) => (
+              {williams.highlights.map((highlight) => (
                 <li key={highlight} className="flex items-start gap-2 text-sm text-text-secondary">
                   <span className="mt-2 h-1 w-1 shrink-0 bg-accent" aria-hidden />
                   {highlight}
