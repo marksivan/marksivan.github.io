@@ -5,16 +5,17 @@ export const projects: Project[] = [
     id: 'pix-sync',
     slug: 'whatsapp-pix-sync',
     category: 'Internship · WhatsApp Payments',
-    title: 'Keeping PIX keys in sync across linked phones',
+    title: 'PIX payment sync across Android and WhatsApp Web',
     description:
-      'On the WhatsApp Payments team, I helped build the sync layer that keeps PIX payment keys consistent when someone links a second Android device — so the same payment identity shows up everywhere it should.',
+      'Internship work on WhatsApp Payments spanning Android and Web. Built real-time synchronization for PIX keys on companion devices in Kotlin and Java, keeping payment information consistent across linked accounts in a market of 140M+ users. Designed and built the Payments Home for WhatsApp Web in React, where users can view, add, and manage PIX keys from linked devices.',
     highlights: [
-      'Real-time sync across companion devices',
-      'Kotlin & Java on Android',
-      'XMPP + SyncD under the hood',
-      'Payments in production at scale',
+      'Real-time PIX sync on Android companion devices',
+      'Payments Home for WhatsApp Web (React, JavaScript)',
+      'Architecture reviews and hybrid code-sharing model',
+      'XMPP + SyncD synchronization layer',
+      'Production payments at scale',
     ],
-    technologies: ['Kotlin', 'Java', 'XMPP', 'SyncD', 'Android'],
+    technologies: ['Kotlin', 'Java', 'React', 'JavaScript', 'XMPP', 'SyncD', 'Android'],
     links: [{ type: 'professional', label: 'Professional experience' }],
     visual: 'pix-sync',
     caseStudyHref: 'https://faq.whatsapp.com/1013401987232838/?cms_platform=web',
@@ -22,26 +23,26 @@ export const projects: Project[] = [
     brands: ['whatsapp', 'meta'],
     caseStudy: {
       overview:
-        'During my internship on WhatsApp Payments, I worked on keeping PIX payment keys in sync across linked Android devices — the kind of problem where a small mismatch between phones can break trust in a payment flow.',
+        'During my internship on WhatsApp Payments, I worked across Android companion sync and WhatsApp Web, keeping PIX payment keys consistent when users link additional devices.',
       problem:
-        'When people link multiple Android devices to WhatsApp, their PIX payment identity needs to stay the same on each one. If devices drift out of sync, users see inconsistent information and the experience falls apart.',
+        'When people link multiple devices to WhatsApp, their PIX payment identity needs to stay the same on each one. Companion Android devices and WhatsApp Web both need a reliable way to view and manage keys without drifting out of sync.',
       role:
-        'Software Engineering Intern on the WhatsApp Payments team, working with senior engineers on synchronization infrastructure.',
+        'Software Engineering Intern on the WhatsApp Payments team, working with senior engineers on synchronization infrastructure and web payments UI.',
       approach:
-        'Built sync logic in Kotlin and Java within WhatsApp\'s companion-device setup, using XMPP messaging and SyncD to propagate state between linked devices.',
+        'Built sync logic in Kotlin and Java using XMPP messaging and SyncD for companion devices, and shipped the Payments Home for WhatsApp Web in React so users could manage PIX keys from linked devices. Contributed to architecture investigations and design reviews, including a hybrid code-sharing model adopted for implementation.',
       challenges:
-        'Handling devices with different connectivity patterns while working inside a large production codebase with thorough design reviews.',
+        'Coordinating real-time state across platforms with different connectivity patterns while working inside a large production codebase with thorough design reviews.',
       outcome:
-        'Contributed to reliable PIX key synchronization for linked devices in WhatsApp\'s Brazil market.',
+        'Contributed to reliable PIX key synchronization and web-based key management for linked devices in WhatsApp\'s Brazil market.',
     },
   },
   {
     id: 'visual-trace',
     slug: 'visual-trace',
     category: 'Developer Tools · Algorithm Visualizer',
-    title: 'VisualTrace — step-by-step algorithm visualization',
+    title: 'VisualTrace: step-by-step algorithm visualization',
     description:
-      'Built a multi-language algorithm visualizer with step-by-step execution tracing, variable inspection, and interactive data structure visualizations.',
+      'A multi-language algorithm visualizer with step-by-step execution tracing, variable inspection, and interactive data structure visualizations.',
     highlights: [
       'Multi-language code execution',
       'Step-by-step execution tracing',
@@ -62,8 +63,8 @@ export const projects: Project[] = [
       overview:
         'VisualTrace is a browser-based algorithm visualizer that lets users write code, run it step by step, and inspect how variables and data structures change over time.',
       problem:
-        'Understanding algorithms from static code alone is hard — learners need to see execution unfold and inspect state at each step.',
-      role: 'Sole developer — designed and built the editor, tracer, and visualization UI.',
+        'Understanding algorithms from static code alone is hard. Learners need to see execution unfold and inspect state at each step.',
+      role: 'Sole developer: designed and built the editor, tracer, and visualization UI.',
       approach:
         'Built a Next.js app with Monaco for editing, Pyodide for in-browser Python execution, and custom inspectors for console output, variables, and stack frames.',
       challenges:
@@ -76,15 +77,15 @@ export const projects: Project[] = [
     id: 'smart-clerk',
     slug: 'smart-clerking-assistant',
     category: 'Clinical Workflow · Prototype',
-    title: 'Smart Clerking Assistant — structured clinical encounters',
+    title: 'Smart Clerking Assistant: structured clinical encounters',
     description:
-      'A clinician-facing workspace that captures structured symptoms, generates adaptive follow-up questions, surfaces relevant clinical considerations, and helps clinicians draft editable encounter plans.',
+      'Developed a clinician-facing patient assessment platform that generates adaptive symptom questionnaires and structured clinical documentation.',
     highlights: [
-      'Adaptive interfaces',
-      'Structured information capture',
-      'Explainable recommendations',
+      'Adaptive symptom questionnaires',
+      'Structured clinical documentation',
       'Safety-conscious product design',
       'Clinician-editable outputs',
+      '~8,500 lines of JavaScript',
     ],
     technologies: ['JavaScript', 'HTML', 'CSS'],
     links: [
@@ -101,20 +102,20 @@ export const projects: Project[] = [
       problem:
         'Clinical encounters generate large amounts of unstructured information. Clinicians need tools that organize intake without replacing clinical judgment.',
       role:
-        'Sole developer — designed and built the prototype interface and adaptive question logic.',
+        'Sole developer: designed and built the prototype interface and adaptive question logic.',
       approach:
         'Built a workspace where clinicians enter structured symptoms, which branch into contextual follow-up questions. Relevant clinical considerations surface alongside an editable encounter plan draft.',
       challenges:
         'Designing an interface that feels helpful without appearing diagnostic. The tool must clearly position itself as a clinician aid, not a patient-facing or decision-replacement system.',
       outcome:
-        'A working prototype demonstrating structured information capture, adaptive questioning, and safety-conscious product design — with all outputs remaining clinician-editable.',
+        'A working prototype demonstrating structured information capture, adaptive questioning, and safety-conscious product design, with all outputs remaining clinician-editable.',
     },
   },
   {
     id: 'trivia',
     slug: 'adaptive-trivia',
     category: 'Desktop Application · Data Structures',
-    title: 'Adaptive Trivia — difficulty that responds to performance',
+    title: 'Adaptive Trivia: difficulty that responds to performance',
     description:
       'Collaboratively developed a desktop trivia game that adjusts question difficulty based on player performance using heap-based data structures.',
     highlights: [
@@ -139,7 +140,7 @@ export const projects: Project[] = [
       problem:
         'Static difficulty in trivia games leads to either boredom or frustration. The game needed to respond to how well a player was performing.',
       role:
-        'Collaborative developer — contributed to game logic, data structure implementation, and desktop UI.',
+        'Collaborative developer: contributed to game logic, data structure implementation, and desktop UI.',
       approach:
         'Used heap data structures to organize questions by difficulty tier. Player performance determines which tier the next question is drawn from, creating a responsive gameplay loop.',
       challenges:
@@ -152,7 +153,7 @@ export const projects: Project[] = [
     id: 'flixster',
     slug: 'flixster',
     category: 'Full-Stack · Movie Discovery',
-    title: 'Flixster — browse and track movies',
+    title: 'Flixster: browse and track movies',
     description:
       'A movie discovery web app powered by the TMDB API. Search popular films, sort by rating or release date, save favorites and watched lists, and watch trailers without leaving the page.',
     highlights: [
@@ -175,21 +176,21 @@ export const projects: Project[] = [
       overview:
         'Flixster is a movie discovery web application that lets users browse, search, and explore current films using data from The Movie Database (TMDB) API.',
       problem:
-        'Finding what to watch is easier when you can search, compare ratings, and keep track of what you have already seen — without jumping between disconnected pages.',
-      role: 'Sole developer — designed and built the frontend, API integration, and list management features.',
+        'Finding what to watch is easier when you can search, compare ratings, and keep track of what you have already seen, without jumping between disconnected pages.',
+      role: 'Sole developer: designed and built the frontend, API integration, and list management features.',
       approach:
         'Built a JavaScript web app that fetches movie data from TMDB, renders searchable and sortable results, and stores favorites and watched movies in local state with modal detail views and embedded trailers.',
       challenges:
         'Keeping pagination and sorting responsive while loading poster-heavy results, and making list management feel instant across Home, Favorites, and Watched views.',
       outcome:
-        'A deployed movie browsing app with search, sorting, personal lists, detail modals, and trailer playback — live on Render.',
+        'A deployed movie browsing app with search, sorting, personal lists, detail modals, and trailer playback, live on Render.',
     },
   },
   {
     id: 'storystack',
     slug: 'storystack',
     category: 'Full-Stack · Social Platform',
-    title: 'StoryStack — collaborative book discovery',
+    title: 'StoryStack: collaborative book discovery',
     description:
       'A collaborative social platform that helps readers discover books through activity-driven recommendations and community discussion.',
     highlights: [
@@ -213,7 +214,7 @@ export const projects: Project[] = [
       overview:
         'StoryStack is a collaborative social platform where readers discover books through activity-driven recommendations, follow other readers, and engage in nested community discussions.',
       problem:
-        'Book discovery is often passive — readers rely on generic lists rather than signals from people whose taste they trust.',
+        'Book discovery is often passive. Readers rely on generic lists rather than signals from people whose taste they trust.',
       role:
         'Full-stack developer collaborating with a team to design and build the platform\'s core features.',
       approach:
@@ -221,7 +222,7 @@ export const projects: Project[] = [
       challenges:
         'Designing recommendation logic that surfaces relevant books without overwhelming users, and structuring nested discussions that remain navigable as threads grow.',
       outcome:
-        'A functional social reading platform with user profiles, activity feeds, recommendation paths, and community discussion — deployed as a collaborative team project.',
+        'A functional social reading platform with user profiles, activity feeds, recommendation paths, and community discussion, deployed as a collaborative team project.',
     },
   },
 ]
