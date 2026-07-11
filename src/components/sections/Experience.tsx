@@ -9,6 +9,36 @@ import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { fadeUp, staggerContainer } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 
+const cardHover = {
+  y: -4,
+  borderColor: 'rgba(46, 196, 160, 0.35)',
+  boxShadow: '0 16px 32px -20px rgba(0, 0, 0, 0.45)',
+}
+
+function ExperienceCard({
+  children,
+  className,
+  reduced,
+}: {
+  children: React.ReactNode
+  className?: string
+  reduced: boolean
+}) {
+  return (
+    <motion.article
+      variants={fadeUp}
+      whileHover={reduced ? undefined : cardHover}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      className={cn(
+        'border border-border bg-bg-surface p-5 transition-colors md:p-6',
+        className,
+      )}
+    >
+      {children}
+    </motion.article>
+  )
+}
+
 export function Experience() {
   const reduced = useReducedMotion()
   const williams = education[0]
@@ -34,11 +64,7 @@ export function Experience() {
         variants={staggerContainer}
       >
         {experience.map((item) => (
-          <motion.article
-            key={item.id}
-            variants={fadeUp}
-            className="border border-border bg-bg-surface p-5 md:p-6"
-          >
+          <ExperienceCard key={item.id} reduced={reduced}>
             <p className="text-mono text-[0.65rem] text-accent">Work</p>
             {item.brands && item.brands.length > 0 && (
               <div className="mt-3 flex gap-2">
@@ -64,14 +90,11 @@ export function Experience() {
                 </li>
               ))}
             </ul>
-          </motion.article>
+          </ExperienceCard>
         ))}
 
         {williams && (
-          <motion.article
-            variants={fadeUp}
-            className={cn('border border-border bg-bg-surface p-5 md:p-6')}
-          >
+          <ExperienceCard reduced={reduced}>
             <p className="text-mono text-[0.65rem] text-accent">Education</p>
             <a
               href={williams.href}
@@ -110,7 +133,7 @@ export function Experience() {
                 </li>
               ))}
             </ul>
-          </motion.article>
+          </ExperienceCard>
         )}
       </motion.div>
     </SectionWrapper>
