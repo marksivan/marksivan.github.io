@@ -165,12 +165,6 @@ body {
   border-radius: 0.375rem;
 }
 
-.profile-photo-frame {
-  width: 220px;
-  height: 280px;
-  border-radius: 0.375rem;
-}
-
 .bg-profile {
   background-color: var(--theme-profile-bg);
 }
