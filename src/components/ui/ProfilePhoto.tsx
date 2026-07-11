@@ -15,25 +15,32 @@ export function ProfilePhoto({ className }: ProfilePhotoProps) {
     return (
       <div
         className={cn(
-          'flex h-28 w-28 items-center justify-center rounded-full border border-dashed border-border-strong bg-bg-elevated',
+          'profile-photo-frame flex items-center justify-center border border-border bg-profile',
           className,
         )}
         role="img"
         aria-label="Profile photo placeholder"
       >
-        <User size={32} className="text-text-muted" strokeWidth={1.5} />
+        <User size={36} className="text-text-muted" strokeWidth={1.5} />
       </div>
     )
   }
 
   return (
-    <img
-      src={PROFILE_IMAGE}
-      alt="Mark Tamakloe"
-      width={112}
-      height={112}
-      className={cn('h-28 w-28 rounded-full border-2 border-border object-cover', className)}
-      onError={() => setMissing(true)}
-    />
+    <div
+      className={cn(
+        'profile-photo-frame overflow-hidden border border-border bg-profile',
+        className,
+      )}
+    >
+      <img
+        src={PROFILE_IMAGE}
+        alt="Mark Tamakloe"
+        width={220}
+        height={280}
+        className="h-full w-full object-contain object-bottom"
+        onError={() => setMissing(true)}
+      />
+    </div>
   )
 }
