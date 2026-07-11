@@ -51,23 +51,44 @@ export function Hero() {
       aria-label="About Mark"
     >
       <div className="container relative z-10 pt-24 pb-20">
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_minmax(0,22rem)] xl:grid-cols-[1fr_minmax(0,26rem)] lg:gap-10 xl:gap-16">
+        <div className="grid gap-x-10 gap-y-10 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-end xl:grid-cols-[1fr_minmax(0,26rem)] xl:gap-x-16">
+          <motion.h1
+            className="max-w-3xl text-display text-[clamp(2.5rem,6.5vw,4.5rem)] font-bold leading-[1.05] text-text-primary lg:col-start-1 lg:row-start-1"
+            initial={reduced ? false : 'hidden'}
+            animate="visible"
+            variants={itemVariants}
+          >
+            Shaping the{' '}
+            <span className="text-accent">digital landscape.</span>
+          </motion.h1>
+
+          <motion.div
+            className="relative mx-auto lg:col-start-2 lg:row-start-1 lg:mx-0 lg:ml-auto lg:justify-self-end"
+            initial={reduced ? false : { opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: duration.reveal, ease: easing.smooth, delay: reduced ? 0 : 0.15 }}
+          >
+            <div
+              className="absolute right-full bottom-0 mr-3 h-36 w-36 sm:mr-4 sm:h-40 sm:w-40 md:h-44 md:w-44"
+              onMouseMove={handleMouseMove}
+            >
+              <HeroVisual
+                mouseX={mouse.x}
+                mouseY={mouse.y}
+                className="h-full w-full opacity-80"
+              />
+            </div>
+            <ProfilePhoto className="relative h-32 w-32 sm:h-36 sm:w-36 md:h-40 md:w-40" />
+          </motion.div>
+
           <motion.div
             initial={reduced ? false : 'hidden'}
             animate="visible"
             variants={staggerContainer}
-            className="max-w-3xl"
+            className="max-w-3xl lg:col-start-1 lg:row-start-2"
           >
-            <motion.h1
-              className="text-display text-[clamp(2.5rem,6.5vw,4.5rem)] font-bold leading-[1.05] text-text-primary"
-              variants={itemVariants}
-            >
-              Shaping the{' '}
-              <span className="text-accent">digital landscape.</span>
-            </motion.h1>
-
             <motion.p
-              className="mt-6 max-w-xl text-lg leading-relaxed text-text-secondary"
+              className="max-w-xl text-lg leading-relaxed text-text-secondary"
               variants={itemVariants}
             >
               Using software engineering and data to build user-centered solutions.
@@ -106,23 +127,6 @@ export function Hero() {
                 </a>
               )}
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="mx-auto flex w-full max-w-sm items-center justify-center gap-3 pt-2 sm:max-w-md sm:gap-4 lg:mx-0 lg:ml-auto lg:justify-end lg:pt-6"
-            initial={reduced ? false : { opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: duration.reveal, ease: easing.smooth, delay: reduced ? 0 : 0.15 }}
-            onMouseMove={handleMouseMove}
-          >
-            <div className="relative h-40 w-40 shrink-0 sm:h-48 sm:w-48 md:h-52 md:w-52">
-              <HeroVisual
-                mouseX={mouse.x}
-                mouseY={mouse.y}
-                className="h-full w-full opacity-80"
-              />
-            </div>
-            <ProfilePhoto className="h-32 w-32 shrink-0 sm:h-36 sm:w-36 md:h-40 md:w-40" />
           </motion.div>
         </div>
       </div>
