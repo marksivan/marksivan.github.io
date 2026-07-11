@@ -21,6 +21,7 @@ import {
   siPhp,
   siMeta,
   siWhatsapp,
+  siNextdotjs,
 } from 'simple-icons'
 
 const icons: Record<string, SimpleIcon> = {
@@ -33,6 +34,7 @@ const icons: Record<string, SimpleIcon> = {
   R: siR,
   PHP: siPhp,
   React: siReact,
+  'Next.js': siNextdotjs,
   HTML: siHtml5,
   CSS: siCss,
   'Tailwind CSS': siTailwindcss,
