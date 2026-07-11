@@ -3,15 +3,15 @@ import type { ExperienceItem } from '@/types'
 export const experience: ExperienceItem[] = [
   {
     id: 'meta',
-    organization: 'Meta — WhatsApp Payments',
+    organization: 'Meta · WhatsApp Payments',
     role: 'Software Engineering Intern',
     location: 'Menlo Park, California',
     period: 'Summer 2026',
     type: 'work',
     brands: ['meta', 'whatsapp'],
     highlights: [
-      'Built real-time synchronization for PIX keys across Android companion devices.',
-      'Worked with Kotlin, Java, XMPP, and SyncD.',
+      'Built real-time synchronization for PIX keys across Android companion devices (Kotlin, Java).',
+      'Designed and built the Payments Home for WhatsApp Web (React, JavaScript).',
       'Investigated architecture and participated in design reviews with senior engineers.',
       'Contributed to payment experiences across mobile and web surfaces.',
     ],
