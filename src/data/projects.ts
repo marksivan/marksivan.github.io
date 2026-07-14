@@ -40,11 +40,11 @@ export const projects: Project[] = [
     category: 'Developer Tools · Algorithm Visualizer',
     title: 'VisualTrace: step-by-step algorithm visualization',
     description:
-      'A multi-language algorithm visualizer with step-by-step execution tracing, variable inspection, and interactive data structure visualizations.',
+      'A multi-language algorithm visualizer with step-by-step execution tracing, variable inspection, interactive data structure views, and automatic pattern detection.',
     highlights: [
-      'Multi-language code execution',
-      'Step-by-step execution tracing',
-      'Interactive data structure views',
+      'Runs Python, JavaScript, Java, and C++ in the browser',
+      'Scrub through execution and inspect state at each step',
+      'Detects common algorithm patterns as you run code',
     ],
     featured: true,
     technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Monaco Editor', 'Pyodide'],
