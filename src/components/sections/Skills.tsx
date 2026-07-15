@@ -8,6 +8,12 @@ import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { cn } from '@/lib/utils'
 
+const cardHover = {
+  y: -4,
+  borderColor: 'rgba(46, 196, 160, 0.35)',
+  boxShadow: '0 16px 32px -20px rgba(0, 0, 0, 0.45)',
+}
+
 export function Skills() {
   const [active, setActive] = useState(skillGroups[0].id)
   const reduced = useReducedMotion()
@@ -43,11 +49,13 @@ export function Skills() {
           ))}
         </div>
 
-        <div
+        <motion.div
           id={`panel-${activeGroup.id}`}
           role="tabpanel"
           aria-label={activeGroup.label}
-          className="surface-elevated self-start p-4 md:p-5"
+          whileHover={reduced ? undefined : cardHover}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="surface-elevated self-start border border-border p-4 transition-colors md:p-5"
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -88,7 +96,7 @@ export function Skills() {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
         </div>
       </div>
     </SectionWrapper>
