@@ -2,6 +2,8 @@ import { useRef, useMemo, useEffect, Suspense } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { useIsMobile } from '@/hooks/useMediaQuery'
+import { useTheme } from '@/hooks/useTheme'
+import type { Theme } from '@/lib/theme'
 import * as THREE from 'three'
 
 interface NetworkSceneProps {
@@ -10,7 +12,52 @@ interface NetworkSceneProps {
   mouseY?: number
 }
 
-function NetworkNodes({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mouseY?: number }) {
+interface NetworkPalette {
+  line: string
+  lineOpacity: number
+  hub: string
+  node: string
+  nodeEmissive: string
+  signal: string
+  ambient: number
+  point: number
+}
+
+function getPalette(theme: Theme): NetworkPalette {
+  if (theme === 'light') {
+    return {
+      line: '#1a9b7f',
+      lineOpacity: 0.42,
+      hub: '#1a9b7f',
+      node: '#3d4a5c',
+      nodeEmissive: '#1a9b7f',
+      signal: '#0f7664',
+      ambient: 0.55,
+      point: 0.85,
+    }
+  }
+
+  return {
+    line: '#2ec4a0',
+    lineOpacity: 0.38,
+    hub: '#2ec4a0',
+    node: '#9aa8b8',
+    nodeEmissive: '#2ec4a0',
+    signal: '#5eead4',
+    ambient: 0.45,
+    point: 0.8,
+  }
+}
+
+function NetworkNodes({
+  mouseX = 0,
+  mouseY = 0,
+  palette,
+}: {
+  mouseX?: number
+  mouseY?: number
+  palette: NetworkPalette
+}) {
   const groupRef = useRef<THREE.Group>(null)
   const reduced = useReducedMotion()
   const signalRef = useRef<THREE.Mesh[]>([])
@@ -33,7 +80,6 @@ function NetworkNodes({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mouseY?: nu
       )
     }
 
-    // Central hub
     nodePositions.push(new THREE.Vector3(0, 0, 0))
 
     const hub = nodePositions.length - 1
@@ -61,13 +107,13 @@ function NetworkNodes({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mouseY?: nu
       const edge = edges[i % edges.length]
       const a = nodes[edge[0]]
       const b = nodes[edge[1]]
-      const progress = ((t * 0.3 + i * 0.2) % 1)
+      const progress = (t * 0.3 + i * 0.2) % 1
       mesh.position.lerpVectors(a, b, progress)
     })
   })
 
   return (
-    <group ref={groupRef}>
+    <group ref={groupRef} scale={1.15}>
       {edges.map(([a, b], i) => {
         const start = nodes[a]
         const end = nodes[b]
@@ -76,20 +122,28 @@ function NetworkNodes({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mouseY?: nu
         return (
           <line key={`edge-${i}`}>
             <bufferGeometry attach="geometry" {...geometry} />
-            <lineBasicMaterial attach="material" color="#4f9cf9" transparent opacity={0.12} />
+            <lineBasicMaterial
+              attach="material"
+              color={palette.line}
+              transparent
+              opacity={palette.lineOpacity}
+            />
           </line>
         )
       })}
-      {nodes.map((pos, i) => (
-        <mesh key={`node-${i}`} position={pos}>
-          <sphereGeometry args={[i === nodes.length - 1 ? 0.08 : 0.04, 16, 16]} />
-          <meshStandardMaterial
-            color={i === nodes.length - 1 ? '#4f9cf9' : '#4a5568'}
-            emissive={i === nodes.length - 1 ? '#4f9cf9' : '#1a2028'}
-            emissiveIntensity={i === nodes.length - 1 ? 0.4 : 0.1}
-          />
-        </mesh>
-      ))}
+      {nodes.map((pos, i) => {
+        const isHub = i === nodes.length - 1
+        return (
+          <mesh key={`node-${i}`} position={pos}>
+            <sphereGeometry args={[isHub ? 0.1 : 0.055, 16, 16]} />
+            <meshStandardMaterial
+              color={isHub ? palette.hub : palette.node}
+              emissive={isHub ? palette.hub : palette.nodeEmissive}
+              emissiveIntensity={isHub ? 0.55 : 0.22}
+            />
+          </mesh>
+        )
+      })}
       {edges.slice(0, 6).map((_, i) => (
         <mesh
           key={`signal-${i}`}
@@ -97,15 +151,27 @@ function NetworkNodes({ mouseX = 0, mouseY = 0 }: { mouseX?: number; mouseY?: nu
             if (el) signalRef.current[i] = el
           }}
         >
-          <sphereGeometry args={[0.02, 8, 8]} />
-          <meshStandardMaterial color="#4f9cf9" emissive="#4f9cf9" emissiveIntensity={1} />
+          <sphereGeometry args={[0.028, 8, 8]} />
+          <meshStandardMaterial
+            color={palette.signal}
+            emissive={palette.signal}
+            emissiveIntensity={1.15}
+          />
         </mesh>
       ))}
     </group>
   )
 }
 
-function SceneContent({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
+function SceneContent({
+  mouseX,
+  mouseY,
+  palette,
+}: {
+  mouseX: number
+  mouseY: number
+  palette: NetworkPalette
+}) {
   const { gl } = useThree()
 
   useEffect(() => {
@@ -120,9 +186,9 @@ function SceneContent({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
 
   return (
     <>
-      <ambientLight intensity={0.3} />
-      <pointLight position={[5, 5, 5]} intensity={0.5} color="#4f9cf9" />
-      <NetworkNodes mouseX={mouseX} mouseY={mouseY} />
+      <ambientLight intensity={palette.ambient} />
+      <pointLight position={[5, 5, 5]} intensity={palette.point} color={palette.hub} />
+      <NetworkNodes mouseX={mouseX} mouseY={mouseY} palette={palette} />
     </>
   )
 }
@@ -130,6 +196,8 @@ function SceneContent({ mouseX, mouseY }: { mouseX: number; mouseY: number }) {
 export function NetworkScene({ className, mouseX = 0, mouseY = 0 }: NetworkSceneProps) {
   const isMobile = useIsMobile()
   const reduced = useReducedMotion()
+  const { theme } = useTheme()
+  const palette = useMemo(() => getPalette(theme), [theme])
   const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio, 1.5)
 
   if (reduced || isMobile) return null
@@ -137,13 +205,14 @@ export function NetworkScene({ className, mouseX = 0, mouseY = 0 }: NetworkScene
   return (
     <div className={className} aria-hidden>
       <Canvas
-        camera={{ position: [0, 0, 6], fov: 50 }}
+        key={theme}
+        camera={{ position: [0, 0, 5.2], fov: 48 }}
         dpr={dpr}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
-          <SceneContent mouseX={mouseX} mouseY={mouseY} />
+          <SceneContent mouseX={mouseX} mouseY={mouseY} palette={palette} />
         </Suspense>
       </Canvas>
     </div>
