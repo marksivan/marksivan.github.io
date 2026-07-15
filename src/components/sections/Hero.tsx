@@ -51,7 +51,7 @@ export function Hero() {
       aria-label="About Mark"
     >
       <div className="container relative z-10 pt-24 pb-20">
-        <div className="grid gap-x-6 gap-y-10 lg:grid-cols-[minmax(0,1fr)_minmax(15rem,22rem)_auto] lg:items-end xl:gap-x-10">
+        <div className="grid gap-x-10 gap-y-10 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-end xl:grid-cols-[1fr_minmax(0,26rem)] xl:gap-x-16">
           <motion.h1
             className="max-w-3xl text-display text-[clamp(2.5rem,6.5vw,4.5rem)] font-bold leading-[1.05] text-text-primary lg:col-start-1 lg:row-start-1"
             initial={reduced ? false : 'hidden'}
@@ -63,25 +63,21 @@ export function Hero() {
           </motion.h1>
 
           <motion.div
-            className="relative mx-auto h-56 w-full max-w-sm sm:h-64 lg:col-start-2 lg:row-start-1 lg:mx-0 lg:h-72 lg:max-w-none"
+            className="relative mx-auto lg:col-start-2 lg:row-start-1 lg:mx-0 lg:ml-auto lg:justify-self-end"
             initial={reduced ? false : { opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: duration.reveal, ease: easing.smooth, delay: reduced ? 0 : 0.15 }}
-            onMouseMove={handleMouseMove}
           >
-            <HeroVisual
-              mouseX={mouse.x}
-              mouseY={mouse.y}
-              className="h-full w-full"
-            />
-          </motion.div>
-
-          <motion.div
-            className="mx-auto lg:col-start-3 lg:row-start-1 lg:mx-0 lg:justify-self-end"
-            initial={reduced ? false : { opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: duration.reveal, ease: easing.smooth, delay: reduced ? 0 : 0.2 }}
-          >
+            <div
+              className="absolute right-full bottom-0 mr-3 h-36 w-36 sm:mr-4 sm:h-40 sm:w-40 md:h-44 md:w-44"
+              onMouseMove={handleMouseMove}
+            >
+              <HeroVisual
+                mouseX={mouse.x}
+                mouseY={mouse.y}
+                className="h-full w-full opacity-80"
+              />
+            </div>
             <ProfilePhoto className="relative h-32 w-32 sm:h-36 sm:w-36 md:h-40 md:w-40" />
           </motion.div>
 
