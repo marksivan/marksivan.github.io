@@ -5,6 +5,12 @@ import { SectionWrapper } from '@/components/layout/SectionWrapper'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { fadeUp, staggerContainer } from '@/lib/motion'
 
+const cardHover = {
+  y: -4,
+  borderColor: 'rgba(46, 196, 160, 0.35)',
+  boxShadow: '0 16px 32px -20px rgba(0, 0, 0, 0.45)',
+}
+
 export function Education() {
   const reduced = useReducedMotion()
 
@@ -26,7 +32,11 @@ export function Education() {
       >
         {education.map((item) => (
           <motion.li key={item.id} variants={fadeUp}>
-            <article className="border border-border bg-bg-surface p-5 md:p-6">
+            <motion.article
+              whileHover={reduced ? undefined : cardHover}
+              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+              className="border border-border bg-bg-surface p-5 transition-colors md:p-6"
+            >
               <div className="flex flex-col gap-5 md:flex-row md:items-start">
                 <a
                   href={item.href}
@@ -72,7 +82,7 @@ export function Education() {
                   </ul>
                 </div>
               </div>
-            </article>
+            </motion.article>
           </motion.li>
         ))}
       </motion.ul>
