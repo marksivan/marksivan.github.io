@@ -1,9 +1,7 @@
-import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowDown } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from '@/components/ui/SocialIcons'
 import { socialLinks } from '@/data/socialLinks'
-import { HeroVisual } from '@/components/three/HeroVisual'
 import { Button } from '@/components/ui/Button'
 import { ProfilePhoto } from '@/components/ui/ProfilePhoto'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -22,14 +20,6 @@ const itemVariants: Variants = {
 
 export function Hero() {
   const reduced = useReducedMotion()
-  const [mouse, setMouse] = useState({ x: 0, y: 0 })
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 2
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 2
-    setMouse({ x, y })
-  }, [])
 
   const github = socialLinks.find((l) => l.id === 'github')
   const linkedin = socialLinks.find((l) => l.id === 'linkedin')
@@ -51,7 +41,7 @@ export function Hero() {
       aria-label="About Mark"
     >
       <div className="container relative z-10 pt-24 pb-20">
-        <div className="grid gap-x-10 gap-y-10 lg:grid-cols-[1fr_minmax(0,22rem)] lg:items-end xl:grid-cols-[1fr_minmax(0,26rem)] xl:gap-x-16">
+        <div className="grid gap-x-10 gap-y-10 lg:grid-cols-[1fr_auto] lg:items-end xl:gap-x-16">
           <motion.h1
             className="max-w-3xl text-display text-[clamp(2.5rem,6.5vw,4.5rem)] font-bold leading-[1.05] text-text-primary lg:col-start-1 lg:row-start-1"
             initial={reduced ? false : 'hidden'}
@@ -63,21 +53,11 @@ export function Hero() {
           </motion.h1>
 
           <motion.div
-            className="relative mx-auto lg:col-start-2 lg:row-start-1 lg:mx-0 lg:ml-auto lg:justify-self-end"
+            className="mx-auto lg:col-start-2 lg:row-start-1 lg:mx-0 lg:justify-self-end"
             initial={reduced ? false : { opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: duration.reveal, ease: easing.smooth, delay: reduced ? 0 : 0.15 }}
           >
-            <div
-              className="absolute right-full bottom-0 mr-3 h-36 w-36 sm:mr-4 sm:h-40 sm:w-40 md:h-44 md:w-44"
-              onMouseMove={handleMouseMove}
-            >
-              <HeroVisual
-                mouseX={mouse.x}
-                mouseY={mouse.y}
-                className="h-full w-full opacity-80"
-              />
-            </div>
             <ProfilePhoto className="relative h-32 w-32 sm:h-36 sm:w-36 md:h-40 md:w-40" />
           </motion.div>
 
